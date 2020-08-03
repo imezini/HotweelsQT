@@ -1,7 +1,0 @@
-#include "autotreno.h"
-
-
-autotreno::autotreno(int p, int c, int n): autoveicolo(n,c,p)
-{
-
-}
