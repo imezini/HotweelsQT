@@ -1,6 +1,8 @@
 #ifndef AUTOVEICOLO_H
 #define AUTOVEICOLO_H
+#include <iostream>
 
+using std::string;
 
 class autoveicolo
 {

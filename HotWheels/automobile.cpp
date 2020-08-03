@@ -2,4 +2,4 @@
 
 
 
-automobile::automobile(int p, int c): autoveicolo(p,c){}
+//automobile::automobile(int p, int c): autoveicolo(p,c){}
