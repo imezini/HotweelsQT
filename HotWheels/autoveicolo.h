@@ -8,24 +8,24 @@ class autoveicolo {
 private:
     string marca;
     string modello;
+    string classeambientale;
     QDate annoImmatricolazione;
     int potenza;
-    string classeambientale;
     int peso;
     int numeroAssi;
 
 
 public:
-    autoveicolo(int = 0, string = "");
+    autoveicolo(string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0);
     ~autoveicolo() = default;
     string getMarca() const;
     string getModello() const;
+    string getClasseambientale() const;
     QDate getData() const;
     int getGiorno() const;
     int getMese() const;
     int getAnno() const;
     int getPotenza() const;
-    string getClasseambientale() const;
     int getPeso() const;
     int getNumeroAssi() const;
 };
