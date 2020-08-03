@@ -25,10 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    autoveicolo.cpp \
+    automobile.cpp \
+    autocarro.cpp \
+    autotreno.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    autoveicolo.h \
+    automobile.h \
+    autocarro.h \
+    autotreno.h
 
 FORMS += \
         mainwindow.ui
