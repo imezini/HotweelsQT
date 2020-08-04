@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), listaVeicoli(new viewListaVeicoli(this)) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new viewListaVeicoli(this)) {
 
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), listaVeicoli(new 
     menu->addAction(exit);
     menuBar->addMenu(menu);
     mainLayout->addWidget(menuBar);
+
     //setMainWindowStyle();
     verticalLayout = new QVBoxLayout();
     horizontal = new QHBoxLayout();

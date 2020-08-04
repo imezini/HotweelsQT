@@ -12,7 +12,7 @@
 #include <QAction>
 #include "viewlistaveicoli.h"
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 

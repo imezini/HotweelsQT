@@ -29,14 +29,16 @@ SOURCES += \
     autoveicolo.cpp \
     automobile.cpp \
     autocarro.cpp \
-    autotreno.cpp
+    autotreno.cpp \
+    viewlistaveicoli.cpp
 
 HEADERS += \
         mainwindow.h \
     autoveicolo.h \
     automobile.h \
     autocarro.h \
-    autotreno.h
+    autotreno.h \
+    viewlistaveicoli.h
 
 FORMS += \
         mainwindow.ui
