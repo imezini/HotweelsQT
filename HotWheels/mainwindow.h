@@ -10,6 +10,8 @@
 #include <QGroupBox>
 #include <QMenuBar>
 #include <QAction>
+#include <QAbstractItemView>
+#include <QLineEdit>
 #include "viewlistaveicoli.h"
 
 class MainWindow : public QWidget
@@ -25,10 +27,11 @@ private slots:
 
 private:
     QVBoxLayout* mainLayout, *verticalLayout;
-    QHBoxLayout* horizontal;
+    QHBoxLayout* horizontal, *Bottonisotto;
     viewListaVeicoli* listaVeicoli;
     QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
+    QLineEdit* lineCerca;
     //void setMainWindowStyle(); Forse serve per lo stile css
 
 };

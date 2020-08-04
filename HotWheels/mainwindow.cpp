@@ -48,16 +48,32 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     allFilter->setLayout(gridFilter);
     verticalLayout->addWidget(allFilter);
 
+    /*Veicoli*/
 
-
-    /*
-    addButton = new QPushButton("Aggiungi",this);
+    QGroupBox *veicoliGroup = new QGroupBox("Lista Veicoli");
+    listaVeicoli->setSelectionMode(QAbstractItemView::SingleSelection);
+    QVBoxLayout *layoutListaVeicoli= new QVBoxLayout();
+    lineCerca = new QLineEdit(this);
+    lineCerca->setPlaceholderText("Cerca Veicolo");
+    layoutListaVeicoli->addWidget(lineCerca);
+    layoutListaVeicoli->addWidget(listaVeicoli);
+    veicoliGroup->setLayout(layoutListaVeicoli);
+    addButton = new QPushButton("Aggiungi veicolo",this);
     addButton->setMinimumWidth(110);
-    modButton = new QPushButton("Modifica",this);
+    modButton = new QPushButton("Modifica veicolo",this);
     modButton->setMinimumWidth(110);
-    removeButton = new QPushButton("Rimuovi",this);
+    removeButton = new QPushButton("Rimuovi veicolo",this);
     removeButton->setMinimumWidth(110);
- */
+
+    verticalLayout->addWidget(veicoliGroup);
+
+    Bottonisotto = new QHBoxLayout();
+    verticalLayout->addLayout(Bottonisotto);
+    Bottonisotto->addWidget(addButton);
+    Bottonisotto->addWidget(modButton);
+    Bottonisotto->addWidget(removeButton);
+
+
 }
 
 MainWindow::~MainWindow()
