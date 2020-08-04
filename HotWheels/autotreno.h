@@ -10,6 +10,7 @@ private: int numeroassi;
 
 public:
     autotreno();
+  //  int= 0, string="", int=3
 };
 
 #endif // AUTOTRENO_H
