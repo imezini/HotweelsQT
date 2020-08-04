@@ -14,3 +14,8 @@ public:
 };
 
 #endif // AUTOTRENO_H
+<<<<<<< HEAD
+//cccaaaaaaa
+=======
+//porcodi
+>>>>>>> master
