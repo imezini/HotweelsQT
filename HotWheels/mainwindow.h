@@ -3,10 +3,6 @@
 
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -19,7 +15,7 @@ private slots:
     void on_btncalcola_clicked(bool checked);
 
 private:
-    Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

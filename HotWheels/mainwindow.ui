@@ -13,125 +13,16 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QPlainTextEdit" name="potenza">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>30</y>
-      <width>221</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>0</y>
-      <width>67</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Kw</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>70</y>
-      <width>141</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Classe ambientale</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="classeambientale">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>100</y>
-      <width>211</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>Euro 0</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 4</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 5</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Euro 6</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>140</y>
-      <width>121</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Numero di assi</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="assi">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>170</y>
-      <width>48</width>
-      <height>26</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btncalcola">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>40</y>
-      <width>221</width>
-      <height>151</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CALCOLA  BOLLO</string>
-    </property>
-   </widget>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -142,15 +33,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
