@@ -30,7 +30,10 @@ SOURCES += \
     automobile.cpp \
     autocarro.cpp \
     autotreno.cpp \
-    viewlistaveicoli.cpp
+    viewlistaveicoli.cpp \
+    addveicoli.cpp \
+    controller.cpp
+
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +41,9 @@ HEADERS += \
     automobile.h \
     autocarro.h \
     autotreno.h \
-    viewlistaveicoli.h
+    viewlistaveicoli.h \
+    addveicoli.h \
+    controller.h
 
 FORMS += \
         mainwindow.ui

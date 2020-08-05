@@ -37,6 +37,9 @@ private:
     QGroupBox* veicoliGroup1;
     //void setMainWindowStyle(); Forse serve per lo stile css
 
+signals:
+    void openAddVeicoli();
+
 };
 
 #endif // MAINWINDOW_H

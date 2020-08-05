@@ -95,6 +95,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
 
 }
 
+
+    /*Parte connect */
+     //connect(addButton, SIGNAL(clicked()), this, SIGNAL(openAddVeicoli()));
+
 MainWindow::~MainWindow()
 {
 
