@@ -73,6 +73,25 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     Bottonisotto->addWidget(modButton);
     Bottonisotto->addWidget(removeButton);
 
+    /*Bollo*/
+
+     QGroupBox *veicoliGroup1 = new QGroupBox("Bollo");
+     QFormLayout *formBolloLayout = new QFormLayout();
+     QLabel *totaleLabel = new QLabel(tr("Totale bollo veicoli selezionati: "));
+     formBolloLayout->addRow(totaleLabel);
+     veicoliGroup1->setLayout(formBolloLayout);
+     verticalLayout->addWidget(veicoliGroup1);
+
+     /*Parte grafica*/
+
+     checkAutomobile->setObjectName(QStringLiteral("checkAutomobile"));
+     checkAutocarro->setObjectName(QStringLiteral("checkAutocarro"));
+     checkAutotreno->setObjectName(QStringLiteral("checkAutotreno"));
+     checkEsonero->setObjectName(QStringLiteral("checkEsonero"));
+     checkMaxAssi->setObjectName(QStringLiteral("checkMaxAssi"));
+     checkMinAssi->setObjectName(QStringLiteral("checkMinAssi"));
+     removeFilter->setObjectName(QStringLiteral("removeFilter"));
+
 
 }
 

@@ -12,6 +12,8 @@
 #include <QAction>
 #include <QAbstractItemView>
 #include <QLineEdit>
+#include <QLabel>
+#include <QFormLayout>
 #include "viewlistaveicoli.h"
 
 class MainWindow : public QWidget
@@ -32,6 +34,7 @@ private:
     QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
+    QGroupBox* veicoliGroup1;
     //void setMainWindowStyle(); Forse serve per lo stile css
 
 };
