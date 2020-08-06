@@ -14,6 +14,9 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QFormLayout>
+#include <QTableWidget>
+#include <QStringList>
+
 #include "viewlistaveicoli.h"
 
 class MainWindow : public QWidget
@@ -35,6 +38,8 @@ private:
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
     QGroupBox* veicoliGroup1;
+    QTableWidget* veicoliTable;
+    QStringList header;
     //void setMainWindowStyle(); Forse serve per lo stile css
 
 signals:

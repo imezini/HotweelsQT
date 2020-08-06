@@ -73,6 +73,18 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     Bottonisotto->addWidget(modButton);
     Bottonisotto->addWidget(removeButton);
 
+    /*
+    veicoliTable -> setRowCount(1);
+    veicoliTable -> setColumnCount(8);
+    header << "1" << "2" << "3" << "4" << "5" << "6" << "8" << "9";
+    veicoliTable->setHorizontalHeaderLabels(header);
+    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    veicoliTable->horizontalHeader()->setStretchLastSection(true);
+    verticalLayout->addWidget(veicoliTable);
+    */
+
+
+
     /*Bollo*/
 
      QGroupBox *veicoliGroup1 = new QGroupBox("Bollo");
