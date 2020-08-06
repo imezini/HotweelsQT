@@ -15,7 +15,11 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QTableWidget>
+#include <QTableView>
+
 #include <QStringList>
+#include <QSizePolicy>
+
 
 #include "viewlistaveicoli.h"
 
@@ -40,6 +44,7 @@ private:
     QGroupBox* veicoliGroup1;
     QTableWidget* veicoliTable;
     QStringList header;
+
     //void setMainWindowStyle(); Forse serve per lo stile css
 
 signals:
