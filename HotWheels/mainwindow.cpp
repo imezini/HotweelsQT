@@ -111,18 +111,22 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
      removeFilter->setObjectName(QStringLiteral("removeFilter"));
 
 
+     /*Parte connect */
+     connect(addButton, SIGNAL(clicked()), this, SIGNAL(openAddVeicoli()));
+
+
 }
 
 
-    /*Parte connect */
-     //connect(addButton, SIGNAL(clicked()), this, SIGNAL(openAddVeicoli()));
 
 MainWindow::~MainWindow()
 {
 
 }
 
-void MainWindow::on_btncalcola_clicked(bool checked)
-{
+//void MainWindow::openAddVeicoli()
+//{
+//    vista = new addVeicoli();
+//    vista->show();
+//}
 
-}

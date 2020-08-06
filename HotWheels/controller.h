@@ -16,7 +16,7 @@ class Controller : public QObject
 
 public:
     explicit Controller(QObject *parent = nullptr);
- //   ~Controller();
+    ~Controller();
 public slots:
     void openAddView() const;
 
