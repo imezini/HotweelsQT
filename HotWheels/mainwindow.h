@@ -22,6 +22,8 @@
 
 
 #include "viewlistaveicoli.h"
+#include "pointer.h"
+#include "addveicoli.h"
 
 class MainWindow : public QWidget
 {
@@ -31,8 +33,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_btncalcola_clicked(bool checked);
+public slots:
+
+
 
 private:
     QVBoxLayout* mainLayout, *verticalLayout;
@@ -44,7 +47,7 @@ private:
     QGroupBox* veicoliGroup1;
     QTableWidget* veicoliTable;
     QStringList header;
-
+    addVeicoli* vista;
     //void setMainWindowStyle(); Forse serve per lo stile css
 
 signals:

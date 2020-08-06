@@ -43,7 +43,8 @@ HEADERS += \
     autotreno.h \
     viewlistaveicoli.h \
     addveicoli.h \
-    controller.h
+    controller.h \
+    pointer.h
 
 FORMS += \
         mainwindow.ui
