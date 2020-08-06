@@ -2,6 +2,8 @@
 #define CONTROLLER_H
 
 #include <QObject>
+#include <iostream>
+#include <QFileDialog>
 #include "addveicoli.h"
 #include "mainwindow.h"
 
@@ -13,14 +15,16 @@ class Controller : public QObject
     Q_OBJECT
 
 public:
-    Controller(QObject * parent = nullptr);
-    ~Controller();
+    explicit Controller(QObject *parent = nullptr);
+ //   ~Controller();
 public slots:
     void openAddView() const;
 
 private:
     MainWindow *view;
     addVeicoli *addVeicoliW;
+
+
 
 };
 
