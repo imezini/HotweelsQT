@@ -30,16 +30,17 @@ class MainWindow : public QWidget
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 public slots:
-
+    void openAddLayout();
 
 
 private:
     QVBoxLayout* mainLayout, *verticalLayout;
     QHBoxLayout* horizontal, *Bottonisotto;
+    addVeicoli* vista;
     viewListaVeicoli* listaVeicoli;
     QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
@@ -47,11 +48,7 @@ private:
     QGroupBox* veicoliGroup1;
     QTableWidget* veicoliTable;
     QStringList header;
-    addVeicoli* vista;
     //void setMainWindowStyle(); Forse serve per lo stile css
-
-signals:
-    void openAddVeicoli();
 
 };
 

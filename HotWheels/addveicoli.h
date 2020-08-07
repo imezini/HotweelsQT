@@ -1,12 +1,12 @@
 #ifndef ADDVEICOLI_H
 #define ADDVEICOLI_H
 
-#include <QDialog>
 #include <QGridLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QTextEdit>
 #include <QPushButton>
 #include <QWidget>
 #include <QFormLayout>
@@ -14,18 +14,18 @@
 
 using std::string;
 
-class addVeicoli : public QDialog {
+class addVeicoli : public QWidget {
         Q_OBJECT
+private:
+//    QHBoxLayout *mainLayout;
+//    QVBoxLayout *verticalLayout;
+    QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit;
+
 public:
     addVeicoli(QWidget *parent = nullptr);
 
 public slots:
     void azzeraRighe();
-
-protected:
-    QHBoxLayout *mainLayout;
-    QVBoxLayout *verticalLayout;
-    QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit;
 
 
 };
