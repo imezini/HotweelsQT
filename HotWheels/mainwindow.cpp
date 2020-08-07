@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new viewListaVeicoli(this)), vista(new addVeicoli()) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli()) {
 
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
@@ -48,15 +48,25 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     allFilter->setLayout(gridFilter);
     verticalLayout->addWidget(allFilter);
 
+    /*tabella veicoli*/
+
+    veicoliTable= new QTableWidget();
+    verticalLayout->addWidget(veicoliTable);
+    veicoliTable -> setRowCount(1);
+    veicoliTable -> setColumnCount(8);
+    header << "1" << "2" << "3" << "4" << "5" << "6" << "8" << "9";
+    veicoliTable->setHorizontalHeaderLabels(header);
+    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //veicoliTable->horizontalHeader()->setStretchLastSection(true);
+
     /*Veicoli*/
 
     QGroupBox *veicoliGroup = new QGroupBox("Lista Veicoli");
-    listaVeicoli->setSelectionMode(QAbstractItemView::SingleSelection);
     QVBoxLayout *layoutListaVeicoli= new QVBoxLayout();
     lineCerca = new QLineEdit(this);
     lineCerca->setPlaceholderText("Cerca Veicolo");
     layoutListaVeicoli->addWidget(lineCerca);
-    layoutListaVeicoli->addWidget(listaVeicoli);
+    layoutListaVeicoli->addWidget(veicoliTable);
     veicoliGroup->setLayout(layoutListaVeicoli);
     addButton = new QPushButton("Aggiungi veicolo",this);
     addButton->setMinimumWidth(110);
@@ -74,24 +84,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     Bottonisotto->addWidget(removeButton);
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
-
-
-    /*tabella veicoli*/
-
-    veicoliTable= new QTableWidget();
-    verticalLayout->addWidget(veicoliTable);
-    veicoliTable -> setRowCount(1);
-    veicoliTable -> setColumnCount(8);
-    header << "1" << "2" << "3" << "4" << "5" << "6" << "8" << "9";
-    veicoliTable->setHorizontalHeaderLabels(header);
-    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    //veicoliTable->horizontalHeader()->setStretchLastSection(true);
-
-
-
-
-
-
 
 
     /*Bollo*/

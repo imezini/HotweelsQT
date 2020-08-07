@@ -41,7 +41,6 @@ private:
     QVBoxLayout* mainLayout, *verticalLayout;
     QHBoxLayout* horizontal, *Bottonisotto;
     addVeicoli* vista;
-    viewListaVeicoli* listaVeicoli;
     QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
