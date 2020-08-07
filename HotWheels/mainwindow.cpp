@@ -1,7 +1,7 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new viewListaVeicoli(this)) {
+
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new viewListaVeicoli(this)), vista(new addVeicoli()) {
 
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
@@ -73,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     Bottonisotto->addWidget(modButton);
     Bottonisotto->addWidget(removeButton);
 
+    connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
+
+
     /*tabella veicoli*/
 
     veicoliTable= new QTableWidget();
@@ -82,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
     header << "1" << "2" << "3" << "4" << "5" << "6" << "8" << "9";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    veicoliTable->horizontalHeader()->setStretchLastSection(true);
+    //veicoliTable->horizontalHeader()->setStretchLastSection(true);
 
 
 
@@ -112,7 +115,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), listaVeicoli(new view
 
 
      /*Parte connect */
-     connect(addButton, SIGNAL(clicked()), this, SIGNAL(openAddVeicoli()));
 
 
 }
@@ -124,9 +126,8 @@ MainWindow::~MainWindow()
 
 }
 
-//void MainWindow::openAddVeicoli()
-//{
-//    vista = new addVeicoli();
-//    vista->show();
-//}
+void MainWindow::openAddLayout()
+{
+    vista->show();
+}
 

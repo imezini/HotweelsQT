@@ -18,11 +18,10 @@ public:
     explicit Controller(QObject *parent = nullptr);
     ~Controller();
 public slots:
-    void openAddView() const;
+
 
 private:
-    MainWindow *view;
-    addVeicoli *addVeicoliW;
+
 
 
 

@@ -2,10 +2,10 @@
 
 using std::string;
 
-addVeicoli::addVeicoli(QWidget *parent) : QDialog (parent) {
+addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
 
     setWindowTitle("Aggiungi un veicolo");
-    mainLayout = new QHBoxLayout(this);
+    QHBoxLayout *mainLayout = new QHBoxLayout();
 
     setLayout(mainLayout);
 
@@ -29,7 +29,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QDialog (parent) {
     formLayout->addRow(classeAmb, classeAmbEdit);
 
     mainLayout->addLayout(formLayout);
-    verticalLayout = new QVBoxLayout();
+    QVBoxLayout *verticalLayout = new QVBoxLayout();
     mainLayout->addLayout(verticalLayout);
 
 
