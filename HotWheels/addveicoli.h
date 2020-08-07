@@ -9,24 +9,40 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QWidget>
+#include <QDate>
+#include <QDateEdit>
 #include <QFormLayout>
+#include <QMessageBox>
+#include <QCheckBox>
+
 
 
 using std::string;
 
 class addVeicoli : public QWidget {
         Q_OBJECT
-private:
-//    QHBoxLayout *mainLayout;
-//    QVBoxLayout *verticalLayout;
-    QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit;
-
 public:
     addVeicoli(QWidget *parent = nullptr);
+    void mostraErroreInput(string);
+    void veicoloAggiunto();
 
 public slots:
     void azzeraRighe();
+    virtual void conferma();
 
+
+signals:
+    void erroreInput(string);
+
+
+protected:
+
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout* mainLayout,*bottoni;
+    QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit, *potenzaEdit, *pesoEdit, *numeroAsEdit;
+    QDateEdit *annoImmEdit;
+    QPushButton *salvaButton,*annullaButton;
+    QCheckBox* automobileCheckbox,*autotrenoCheckbox,*autocarroCheckbox,*esoneroCheckbox;
 
 };
 
