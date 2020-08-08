@@ -16,9 +16,11 @@
 #include <QFormLayout>
 #include <QTableWidget>
 #include <QTableView>
-
+#include <QFile>
 #include <QStringList>
 #include <QSizePolicy>
+#include <QString>
+
 
 
 #include "viewlistaveicoli.h"
@@ -32,9 +34,16 @@ class MainWindow : public QWidget
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void colorinizio() const;
 
 public slots:
     void openAddLayout();
+    void colorAutomobile();
+    void colorAutotreno();
+    void colorAutocarro();
+    void colorMinAssi();
+    void colorMaxAssi();
+    void esonero();
 
 
 private:
@@ -47,7 +56,7 @@ private:
     QGroupBox* veicoliGroup1;
     QTableWidget* veicoliTable;
     QStringList header;
-    //void setMainWindowStyle(); Forse serve per lo stile css
+    void setMainWindowStyle();
 
 };
 

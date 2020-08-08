@@ -8,6 +8,12 @@ class viewListaVeicoli : public QListWidget {
 public:
     viewListaVeicoli(QWidget* = nullptr);
 
+    unsigned int getIndex() const;
+
+    bool isSomeoneSelected() const;
+
+    void unSelectIndex() const;
+
 };
 
 #endif // VIEWLISTAVEICOLI_H

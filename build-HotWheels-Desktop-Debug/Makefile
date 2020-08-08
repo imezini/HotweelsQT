@@ -75,7 +75,8 @@ OBJECTS       = main.o \
 		moc_viewlistaveicoli.o \
 		moc_addveicoli.o \
 		moc_controller.o
-DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = ../HotWheels/style.css \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -129,6 +130,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		../HotWheels/.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -155,7 +157,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../HotWheels/autotreno.h \
 		../HotWheels/viewlistaveicoli.h \
 		../HotWheels/addveicoli.h \
-		../HotWheels/controller.h ../HotWheels/main.cpp \
+		../HotWheels/controller.h \
+		../HotWheels/pointer.h ../HotWheels/main.cpp \
 		../HotWheels/mainwindow.cpp \
 		../HotWheels/autoveicolo.cpp \
 		../HotWheels/automobile.cpp \
@@ -229,6 +232,7 @@ Makefile: ../HotWheels/HotWheels.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -307,6 +311,7 @@ Makefile: ../HotWheels/HotWheels.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -345,7 +350,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/viewlistaveicoli.h ../HotWheels/addveicoli.h ../HotWheels/controller.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/viewlistaveicoli.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/pointer.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/viewlistaveicoli.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/mainwindow.ui $(DISTDIR)/
 
@@ -383,6 +388,8 @@ compiler_moc_header_make_all: moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_ad
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_addveicoli.cpp moc_controller.cpp
 moc_mainwindow.cpp: ../HotWheels/viewlistaveicoli.h \
+		../HotWheels/pointer.h \
+		../HotWheels/addveicoli.h \
 		../HotWheels/mainwindow.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -401,6 +408,7 @@ moc_addveicoli.cpp: ../HotWheels/addveicoli.h \
 moc_controller.cpp: ../HotWheels/addveicoli.h \
 		../HotWheels/mainwindow.h \
 		../HotWheels/viewlistaveicoli.h \
+		../HotWheels/pointer.h \
 		../HotWheels/controller.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
@@ -425,13 +433,17 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../HotWheels/main.cpp ../HotWheels/mainwindow.h \
-		../HotWheels/viewlistaveicoli.h
+main.o: ../HotWheels/main.cpp ../HotWheels/controller.h \
+		../HotWheels/addveicoli.h \
+		../HotWheels/mainwindow.h \
+		../HotWheels/viewlistaveicoli.h \
+		../HotWheels/pointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../HotWheels/main.cpp
 
 mainwindow.o: ../HotWheels/mainwindow.cpp ../HotWheels/mainwindow.h \
 		../HotWheels/viewlistaveicoli.h \
-		ui_mainwindow.h
+		../HotWheels/pointer.h \
+		../HotWheels/addveicoli.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../HotWheels/mainwindow.cpp
 
 autoveicolo.o: ../HotWheels/autoveicolo.cpp ../HotWheels/autoveicolo.h
@@ -458,7 +470,8 @@ addveicoli.o: ../HotWheels/addveicoli.cpp ../HotWheels/addveicoli.h
 controller.o: ../HotWheels/controller.cpp ../HotWheels/controller.h \
 		../HotWheels/addveicoli.h \
 		../HotWheels/mainwindow.h \
-		../HotWheels/viewlistaveicoli.h
+		../HotWheels/viewlistaveicoli.h \
+		../HotWheels/pointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../HotWheels/controller.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

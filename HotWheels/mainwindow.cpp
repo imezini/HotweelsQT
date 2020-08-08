@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli(
     menuBar->addMenu(menu);
     mainLayout->addWidget(menuBar);
 
-    //setMainWindowStyle();
+    setMainWindowStyle();
     verticalLayout = new QVBoxLayout();
     horizontal = new QHBoxLayout();
     mainLayout->addLayout(horizontal);
@@ -122,4 +122,80 @@ void MainWindow::openAddLayout()
 {
     vista->show();
 }
+// colori+css
+
+void MainWindow::setMainWindowStyle(){
+    QFile file("Other files/style.css");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    setStyleSheet(styleSheet);
+}
+
+void MainWindow:: colorinizio() const{
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+
+}
+
+
+void MainWindow::colorAutomobile(){
+    checkAutomobile->setStyleSheet("background-color:#3cb043;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+
+
+}
+
+void MainWindow::colorAutotreno(){
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#3cb043;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+}
+
+void MainWindow::colorAutocarro(){
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#3cb043;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+}
+
+void MainWindow::colorMinAssi(){
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#3cb043;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+}
+
+void MainWindow::colorMaxAssi(){
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#3cb043;");
+    checkEsonero->setStyleSheet("background-color:#FFAE42;");
+}
+
+void MainWindow::esonero(){
+    checkAutomobile->setStyleSheet("background-color:#FFAE42;");
+    checkAutocarro->setStyleSheet("background-color:#FFAE42;");
+    checkAutotreno->setStyleSheet("background-color:#FFAE42;");
+    checkMinAssi->setStyleSheet("background-color:#FFAE42;");
+    checkMaxAssi->setStyleSheet("background-color:#FFAE42;");
+    checkEsonero->setStyleSheet("background-color:#3cb043;");
+}
+
 

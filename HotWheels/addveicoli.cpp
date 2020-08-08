@@ -89,12 +89,24 @@ void addVeicoli::azzeraRighe() {
     marcaEdit->setText("");
     modelloEdit->setText("");
     classeAmbEdit->setText("");
+    annoImmEdit->setDate(QDate::currentDate());
+    potenzaEdit->setText("");
+    pesoEdit->setText("");
+    numeroAsEdit->setText("");
+    automobileCheckbox->setChecked(false);
+    autotrenoCheckbox->setChecked(false);
+    autocarroCheckbox->setChecked(false);
+    esoneroCheckbox->setChecked(false);
+
 }
 
 void addVeicoli::mostraErroreInput(string motivo){
     QMessageBox erroreInput;
     if(motivo=="mancaLineEdit")
     erroreInput.critical(this,"Errore","Compilare i campi obbligatori (*) per poter procedere");
+    else if (motivo=="mancaCheckBox")
+        erroreInput.critical(this,"Errore","Selezionare il tipo di veicolo");
+
 }
 
 void addVeicoli::veicoloAggiunto(){
@@ -105,7 +117,30 @@ void addVeicoli::veicoloAggiunto(){
 void addVeicoli:: conferma(){
     if
             (marcaEdit->text()=="" || modelloEdit->text()=="" || classeAmbEdit->text()==""|| annoImmEdit->text()==""|| potenzaEdit->text()==""|| pesoEdit->text()==""|| numeroAsEdit->text()==""){
-        emit erroreInput("mancaLineEdit");
+        emit erroreInput("mancaLineEdit");   
+    }
+    else if (!automobileCheckbox->isChecked()&& !autocarroCheckbox->isChecked()&& !autotrenoCheckbox->isChecked()){
+        emit erroreInput("mancaCheckBox");
+    }
+    else
+    {
+        QStringList *tmp= new QStringList();
+        tmp->push_back(marcaEdit->text());
+        tmp->push_back(modelloEdit->text());
+        tmp->push_back(classeAmbEdit->text());
+        tmp->push_back(annoImmEdit->date().toString());
+        tmp->push_back(potenzaEdit->text());
+        tmp->push_back(pesoEdit->text());
+        tmp->push_back(numeroAsEdit->text());
+        tmp->push_back(automobileCheckbox->isChecked()? "true":"false");
+        tmp->push_back(autocarroCheckbox->isChecked()? "true":"false");
+        tmp->push_back(autotrenoCheckbox->isChecked()? "true":"false");
+        tmp->push_back(esoneroCheckbox->isChecked()? "true":"false");
+
+        emit inviaStringaVeicoli(*tmp);
+        this->close();
+
+        veicoloAggiunto();
     }
 }
 

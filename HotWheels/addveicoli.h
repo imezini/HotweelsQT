@@ -14,6 +14,7 @@
 #include <QFormLayout>
 #include <QMessageBox>
 #include <QCheckBox>
+#include <QStringList>
 
 
 
@@ -33,10 +34,10 @@ public slots:
 
 signals:
     void erroreInput(string);
+    void inviaStringaVeicoli(const QStringList);
 
 
 protected:
-
     QVBoxLayout *verticalLayout;
     QHBoxLayout* mainLayout,*bottoni;
     QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit, *potenzaEdit, *pesoEdit, *numeroAsEdit;
