@@ -119,40 +119,6 @@ void addVeicoli::veicoloAggiunto(){
     QMessageBox veicoloAggiuntoBox;
     veicoloAggiuntoBox.information(this,"Veicolo aggiunto","Il veicolo è stato aggiunto con successo!");
 }
-/*
-void addVeicoli:: conferma(){
-    if
-            (marcaEdit->text()=="" || modelloEdit->text()=="" || classeAmbEdit->text()==""|| annoImmEdit->text()==""|| potenzaEdit->text()==""|| pesoEdit->text()==""|| numeroAsEdit->text()==""){
-        emit erroreInput("mancaLineEdit");
-    }
-    else if (!automobileCheckbox->isChecked()&& !autocarroCheckbox->isChecked()&& !autotrenoCheckbox->isChecked()){
-        emit erroreInput("mancaCheckBox");
-    }
-    else
-    {
-        QStringList *tmp= new QStringList();
-        tmp->push_back(marcaEdit->text());
-        tmp->push_back(modelloEdit->text());
-        tmp->push_back(classeAmbEdit->text());
-        tmp->push_back(annoImmEdit->date().toString());
-        tmp->push_back(potenzaEdit->text());
-        tmp->push_back(pesoEdit->text());
-        tmp->push_back(numeroAsEdit->text());
-        tmp->push_back(automobileCheckbox->isChecked()? "true":"false");
-        tmp->push_back(autocarroCheckbox->isChecked()? "true":"false");
-        tmp->push_back(autotrenoCheckbox->isChecked()? "true":"false");
-        tmp->push_back(esoneroCheckbox->isChecked()? "true":"false");
-
-        emit inviaStringaVeicoli(*tmp);
-        this->close();
-
-        veicoloAggiunto();
-    }
-}
-*/
-
-// CAMBIATO SU EMIT prima era erroreInput, invece deve chiamare il metodo creato mostraErroreInput
-// Il tasto salva chiama questo metodo "conferma()" e non un generico "confirm()"
 
 void addVeicoli:: conferma(){
     if

@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli()) {
 
-    setMinimumSize(800,600);
+    setMinimumSize(950,600);
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
 
@@ -54,8 +54,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli(
     veicoliTable= new QTableWidget();
     verticalLayout->addWidget(veicoliTable);
     veicoliTable -> setRowCount(1);
-    veicoliTable -> setColumnCount(8);
-    header << "Marca" << "Modello" << "Cl.Ambientale" << "4" << "5" << "6" << "8" << "9";
+    veicoliTable -> setColumnCount(9);
+    header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     //veicoliTable->horizontalHeader()->setStretchLastSection(true);
