@@ -27,7 +27,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
 
     QLabel *annoImm = new QLabel("(*)Anno Immatricolazione: ");
     annoImmEdit = (new QDateEdit(QDate::currentDate(),this));
-    annoImmEdit->setCalendarPopup("es. aa/mm/gg");
+    annoImmEdit->setCalendarPopup("es. gg/mm/aa");
 
     QLabel *potenza = new QLabel("(*)Potenza (Kw): ");
     potenzaEdit = new QLineEdit();

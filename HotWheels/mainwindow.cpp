@@ -132,7 +132,7 @@ void MainWindow::setMainWindowStyle(){
     setStyleSheet(styleSheet);
 }
 
-void MainWindow:: colorinizio() const{
+void MainWindow:: colorInizio() const{
     checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
     checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
     checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
@@ -190,7 +190,7 @@ void MainWindow::colorMaxAssi(){
     checkEsonero->setStyleSheet("background-color:#ADD8E6;");
 }
 
-void MainWindow::esonero(){
+void MainWindow::colorEsonero(){
     checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
     checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
     checkAutotreno->setStyleSheet("background-color:#ADD8E6;");

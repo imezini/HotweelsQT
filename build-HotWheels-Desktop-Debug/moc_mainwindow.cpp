@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[9];
-    char stringdata0[106];
+    char stringdata0[111];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -39,12 +39,12 @@ QT_MOC_LITERAL(4, 42, 14), // "colorAutotreno"
 QT_MOC_LITERAL(5, 57, 14), // "colorAutocarro"
 QT_MOC_LITERAL(6, 72, 12), // "colorMinAssi"
 QT_MOC_LITERAL(7, 85, 12), // "colorMaxAssi"
-QT_MOC_LITERAL(8, 98, 7) // "esonero"
+QT_MOC_LITERAL(8, 98, 12) // "colorEsonero"
 
     },
     "MainWindow\0openAddLayout\0\0colorAutomobile\0"
     "colorAutotreno\0colorAutocarro\0"
-    "colorMinAssi\0colorMaxAssi\0esonero"
+    "colorMinAssi\0colorMaxAssi\0colorEsonero"
 };
 #undef QT_MOC_LITERAL
 
@@ -94,7 +94,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->colorAutocarro(); break;
         case 4: _t->colorMinAssi(); break;
         case 5: _t->colorMaxAssi(); break;
-        case 6: _t->esonero(); break;
+        case 6: _t->colorEsonero(); break;
         default: ;
         }
     }

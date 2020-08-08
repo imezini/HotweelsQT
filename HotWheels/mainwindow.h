@@ -34,7 +34,7 @@ class MainWindow : public QWidget
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void colorinizio() const;
+    void colorInizio() const;
 
 public slots:
     void openAddLayout();
@@ -43,7 +43,7 @@ public slots:
     void colorAutocarro();
     void colorMinAssi();
     void colorMaxAssi();
-    void esonero();
+    void colorEsonero();
 
 
 private:
