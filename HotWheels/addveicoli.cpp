@@ -12,6 +12,9 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
 
     setLayout(mainLayout);
 
+    QLabel *targa = new QLabel("(*)Targa: ");
+    targaEdit = new QLineEdit();
+    targaEdit->setPlaceholderText("es. AA123ZZ");
 
     QLabel *marca = new QLabel("(*)Marca: ");
     marcaEdit = new QLineEdit();
@@ -48,6 +51,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
 
     QFormLayout *formLayout = new QFormLayout();
     formLayout->setFormAlignment(Qt::AlignLeft);
+    formLayout->addRow(targa, targaEdit);
     formLayout->addRow(marca, marcaEdit);
     formLayout->addRow(modello, modelloEdit);
     formLayout->addRow(classeAmb, classeAmbEdit);
@@ -80,12 +84,14 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
 
     //PARTE CONNECT
 
-    //connect(annullaButton, SIGNAL(clicked()), this, SLOT(close()));
-    //connect(salvaButton, SIGNAL(clicked()), this, SLOT(confirm()));
+    connect(salvaButton, SIGNAL(clicked()), this, SLOT(conferma()));
+    connect(annullaButton, SIGNAL(clicked()), this, SLOT(close()));
+
 
 }
 
 void addVeicoli::azzeraRighe() {
+    targaEdit->setText("");
     marcaEdit->setText("");
     modelloEdit->setText("");
     classeAmbEdit->setText("");
@@ -113,11 +119,11 @@ void addVeicoli::veicoloAggiunto(){
     QMessageBox veicoloAggiuntoBox;
     veicoloAggiuntoBox.information(this,"Veicolo aggiunto","Il veicolo è stato aggiunto con successo!");
 }
-
+/*
 void addVeicoli:: conferma(){
     if
             (marcaEdit->text()=="" || modelloEdit->text()=="" || classeAmbEdit->text()==""|| annoImmEdit->text()==""|| potenzaEdit->text()==""|| pesoEdit->text()==""|| numeroAsEdit->text()==""){
-        emit erroreInput("mancaLineEdit");   
+        emit erroreInput("mancaLineEdit");
     }
     else if (!automobileCheckbox->isChecked()&& !autocarroCheckbox->isChecked()&& !autotrenoCheckbox->isChecked()){
         emit erroreInput("mancaCheckBox");
@@ -143,6 +149,42 @@ void addVeicoli:: conferma(){
         veicoloAggiunto();
     }
 }
+*/
+
+// CAMBIATO SU EMIT prima era erroreInput, invece deve chiamare il metodo creato mostraErroreInput
+// Il tasto salva chiama questo metodo "conferma()" e non un generico "confirm()"
+
+void addVeicoli:: conferma(){
+    if
+            (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || classeAmbEdit->text()==""|| annoImmEdit->text()==""|| potenzaEdit->text()==""|| pesoEdit->text()==""|| numeroAsEdit->text()==""){
+        emit mostraErroreInput("mancaLineEdit");
+    }
+    else if (!automobileCheckbox->isChecked()&& !autocarroCheckbox->isChecked()&& !autotrenoCheckbox->isChecked()){
+        emit mostraErroreInput("mancaCheckBox");
+    }
+    else
+    {
+        QStringList *tmp= new QStringList();
+        tmp->push_back(targaEdit->text());
+        tmp->push_back(marcaEdit->text());
+        tmp->push_back(modelloEdit->text());
+        tmp->push_back(classeAmbEdit->text());
+        tmp->push_back(annoImmEdit->date().toString());
+        tmp->push_back(potenzaEdit->text());
+        tmp->push_back(pesoEdit->text());
+        tmp->push_back(numeroAsEdit->text());
+        tmp->push_back(automobileCheckbox->isChecked()? "true":"false");
+        tmp->push_back(autocarroCheckbox->isChecked()? "true":"false");
+        tmp->push_back(autotrenoCheckbox->isChecked()? "true":"false");
+        tmp->push_back(esoneroCheckbox->isChecked()? "true":"false");
+
+        emit inviaStringaVeicoli(*tmp);
+        this->close();
+
+        veicoloAggiunto();
+    }
+}
+
 
 
 

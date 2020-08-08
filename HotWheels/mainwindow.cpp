@@ -119,10 +119,11 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::openAddLayout()
-{
+void MainWindow::openAddLayout() {
     vista->show();
 }
+
+
 // colori+css
 
 void MainWindow::setMainWindowStyle(){

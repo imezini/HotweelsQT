@@ -6,6 +6,7 @@ using std::string;
 
 class autoveicolo {
 private:
+    string targa;
     string marca;
     string modello;
     string classeambientale;
@@ -15,13 +16,20 @@ private:
     int numeroAssi;
 
 
+
 public:
-    autoveicolo(string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0);
+    autoveicolo(string ="", string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0);
     ~autoveicolo() = default;
+
+    virtual bool operator==(const autoveicolo&) const;
+
+    int calcolaBollo(const int&);
+
+    string getTarga() const;
     string getMarca() const;
     string getModello() const;
     string getClasseambientale() const;
-    QDate getData() const;
+    QDate getAnnoImm() const;
     int getGiorno() const;
     int getMese() const;
     int getAnno() const;

@@ -40,7 +40,7 @@ signals:
 protected:
     QVBoxLayout *verticalLayout;
     QHBoxLayout* mainLayout,*bottoni;
-    QLineEdit *marcaEdit, *modelloEdit, *classeAmbEdit, *potenzaEdit, *pesoEdit, *numeroAsEdit;
+    QLineEdit *targaEdit, *marcaEdit, *modelloEdit, *classeAmbEdit, *potenzaEdit, *pesoEdit, *numeroAsEdit;
     QDateEdit *annoImmEdit;
     QPushButton *salvaButton,*annullaButton;
     QCheckBox* automobileCheckbox,*autotrenoCheckbox,*autocarroCheckbox,*esoneroCheckbox;
