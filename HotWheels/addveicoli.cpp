@@ -78,7 +78,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
     bottoni->addWidget(salvaButton);
     bottoni->addWidget(annullaButton);
 
-    //parte connect
+    //PARTE CONNECT
 
     //connect(annullaButton, SIGNAL(clicked()), this, SLOT(close()));
     //connect(salvaButton, SIGNAL(clicked()), this, SLOT(confirm()));

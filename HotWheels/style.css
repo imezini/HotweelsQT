@@ -1,11 +1,18 @@
 QWidget QPushButton, QMenuBar::item:selected, QMenu::item:selected{
-background-color:#FFAE42;
+background-color:#ADD8E6;
 }
 
 QPushButton#removeFilter, QPushButton#checkAutomobile, QPushButton#checkAutocarro, QPushButton#checkAutotreno, QPushButton#checkMinAssi, QPushButton#checkMaxAssi,QPushButton#checkesonero{
-border-radius:10px;
-height: 30px;
-width : 100px;
-margin: 1px;
+height: 40px;
+width : 110px;
+margin: 0px;
 }
 
+QMenuBar{
+   padding: 6 px;
+   background-color: #ADD8E6;
+}
+
+QMenuBar::item:selected, QMenu::item:selected{
+   background-color: #ADD8E6;
+}

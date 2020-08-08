@@ -58,7 +58,8 @@ SOURCES       = ../HotWheels/main.cpp \
 		../HotWheels/autotreno.cpp \
 		../HotWheels/viewlistaveicoli.cpp \
 		../HotWheels/addveicoli.cpp \
-		../HotWheels/controller.cpp moc_mainwindow.cpp \
+		../HotWheels/controller.cpp qrc_risorse.cpp \
+		moc_mainwindow.cpp \
 		moc_viewlistaveicoli.cpp \
 		moc_addveicoli.cpp \
 		moc_controller.cpp
@@ -71,12 +72,12 @@ OBJECTS       = main.o \
 		viewlistaveicoli.o \
 		addveicoli.o \
 		controller.o \
+		qrc_risorse.o \
 		moc_mainwindow.o \
 		moc_viewlistaveicoli.o \
 		moc_addveicoli.o \
 		moc_controller.o
-DIST          = ../HotWheels/style.css \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -253,6 +254,7 @@ Makefile: ../HotWheels/HotWheels.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../HotWheels/HotWheels.pro \
+		../HotWheels/risorse.qrc \
 		/usr/lib/x86_64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Gui.prl \
 		/usr/lib/x86_64-linux-gnu/libQt5Core.prl
@@ -332,6 +334,7 @@ Makefile: ../HotWheels/HotWheels.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../HotWheels/HotWheels.pro:
+../HotWheels/risorse.qrc:
 /usr/lib/x86_64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Gui.prl:
 /usr/lib/x86_64-linux-gnu/libQt5Core.prl:
@@ -349,6 +352,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/risorse.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/viewlistaveicoli.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/pointer.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/viewlistaveicoli.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp $(DISTDIR)/
@@ -376,8 +380,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_risorse.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_risorse.cpp
+qrc_risorse.cpp: ../HotWheels/risorse.qrc \
+		/usr/lib/qt5/bin/rcc \
+		../HotWheels/style.css
+	/usr/lib/qt5/bin/rcc -name risorse ../HotWheels/risorse.qrc -o qrc_risorse.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -429,7 +439,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -473,6 +483,9 @@ controller.o: ../HotWheels/controller.cpp ../HotWheels/controller.h \
 		../HotWheels/viewlistaveicoli.h \
 		../HotWheels/pointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../HotWheels/controller.cpp
+
+qrc_risorse.o: qrc_risorse.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_risorse.o qrc_risorse.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
