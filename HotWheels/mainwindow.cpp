@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli()) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli()), vistaMod(new modVeicoli()) {
 
     setMinimumSize(950,600);
     setWindowTitle("Controlla Bollo");
@@ -85,6 +85,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vista(new addVeicoli(
     Bottonisotto->addWidget(removeButton);
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
+    connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
 
 
     /*Bollo*/
@@ -120,7 +121,11 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::openAddLayout() {
-    vista->show();
+    vistaAdd->show();
+}
+
+void MainWindow::openModLayout() {
+    vistaMod->show();
 }
 
 

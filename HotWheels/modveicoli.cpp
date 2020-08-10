@@ -1,11 +1,13 @@
-#include "modificaveicoli.h"
+#include "modveicoli.h"
 
-modificaveicoli::modificaveicoli(QWidget *parent):addVeicoli(parent){
+modVeicoli::modVeicoli(QWidget *parent):addVeicoli(parent){
     setMinimumSize(500,400);
-    setWindowTitle("Finestra modifica veicolo");
+    setWindowTitle("Modifica il veicolo selezionato");
 }
 
-void modificaveicoli::aggiungiDati(const QStringList& c, const unsigned int i){
+void modVeicoli::aggiungiDati(const QStringList& c, const unsigned int i){
+
+    ini = i;
 
     targaEdit->setText(c.at(0));
     marcaEdit->setText(c.at(1));
@@ -21,12 +23,12 @@ void modificaveicoli::aggiungiDati(const QStringList& c, const unsigned int i){
     esoneroCheckbox->setChecked(c.at(11)=="true"? true : false);
 
 }
-void modificaveicoli:: veicoloModificato(){
+void modVeicoli:: veicoloModificato(){
     QMessageBox veicoloModificatoBox;
     veicoloModificatoBox.information(this, "Veicolo modificato", "Veicolo modificato con successo");
 }
 
-void modificaveicoli::conferma(){
+void modVeicoli::conferma(){
     if (targaEdit->text()=="" || marcaEdit->text()==""|| modelloEdit->text()==""|| classeAmbEdit->text()==""|| annoImmEdit->text()==""|| potenzaEdit->text()==""|| pesoEdit->text()==""|| numeroAsEdit->text()==""){
         emit mostraErroreInput("mancaLineEdit");
     }
@@ -49,10 +51,10 @@ void modificaveicoli::conferma(){
         tmp->push_back(autotrenoCheckbox->isChecked()? "true":"false");
         tmp->push_back(esoneroCheckbox->isChecked()? "true":"false");
 
-        emit inviaStringaVeicoli(*tmp);
+        emit sostituisciVeicolo(ini, *tmp);
         this->close();
 
-        veicoloAggiunto();
+        veicoloModificato();
     }
 }
 
