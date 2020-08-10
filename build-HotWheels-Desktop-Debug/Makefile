@@ -58,11 +58,13 @@ SOURCES       = ../HotWheels/main.cpp \
 		../HotWheels/autotreno.cpp \
 		../HotWheels/viewlistaveicoli.cpp \
 		../HotWheels/addveicoli.cpp \
-		../HotWheels/controller.cpp qrc_risorse.cpp \
+		../HotWheels/controller.cpp \
+		../HotWheels/modificaveicoli.cpp qrc_risorse.cpp \
 		moc_mainwindow.cpp \
 		moc_viewlistaveicoli.cpp \
 		moc_addveicoli.cpp \
-		moc_controller.cpp
+		moc_controller.cpp \
+		moc_modificaveicoli.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		autoveicolo.o \
@@ -72,11 +74,13 @@ OBJECTS       = main.o \
 		viewlistaveicoli.o \
 		addveicoli.o \
 		controller.o \
+		modificaveicoli.o \
 		qrc_risorse.o \
 		moc_mainwindow.o \
 		moc_viewlistaveicoli.o \
 		moc_addveicoli.o \
-		moc_controller.o
+		moc_controller.o \
+		moc_modificaveicoli.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -159,7 +163,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../HotWheels/viewlistaveicoli.h \
 		../HotWheels/addveicoli.h \
 		../HotWheels/controller.h \
-		../HotWheels/pointer.h ../HotWheels/main.cpp \
+		../HotWheels/pointer.h \
+		../HotWheels/modificaveicoli.h ../HotWheels/main.cpp \
 		../HotWheels/mainwindow.cpp \
 		../HotWheels/autoveicolo.cpp \
 		../HotWheels/automobile.cpp \
@@ -167,7 +172,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../HotWheels/autotreno.cpp \
 		../HotWheels/viewlistaveicoli.cpp \
 		../HotWheels/addveicoli.cpp \
-		../HotWheels/controller.cpp
+		../HotWheels/controller.cpp \
+		../HotWheels/modificaveicoli.cpp
 QMAKE_TARGET  = HotWheels
 DESTDIR       = 
 TARGET        = HotWheels
@@ -354,8 +360,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/risorse.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/viewlistaveicoli.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/pointer.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/viewlistaveicoli.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/viewlistaveicoli.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/pointer.h ../HotWheels/modificaveicoli.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/viewlistaveicoli.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp ../HotWheels/modificaveicoli.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/mainwindow.ui $(DISTDIR)/
 
 
@@ -394,9 +400,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_addveicoli.cpp moc_controller.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_addveicoli.cpp moc_controller.cpp moc_modificaveicoli.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_addveicoli.cpp moc_controller.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_viewlistaveicoli.cpp moc_addveicoli.cpp moc_controller.cpp moc_modificaveicoli.cpp
 moc_mainwindow.cpp: ../HotWheels/viewlistaveicoli.h \
 		../HotWheels/pointer.h \
 		../HotWheels/addveicoli.h \
@@ -423,6 +429,12 @@ moc_controller.cpp: ../HotWheels/addveicoli.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/HotweelsQT/HotWheels -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../HotWheels/controller.h -o moc_controller.cpp
+
+moc_modificaveicoli.cpp: ../HotWheels/addveicoli.h \
+		../HotWheels/modificaveicoli.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/student/HotweelsQT/HotWheels -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../HotWheels/modificaveicoli.h -o moc_modificaveicoli.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -484,6 +496,10 @@ controller.o: ../HotWheels/controller.cpp ../HotWheels/controller.h \
 		../HotWheels/pointer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o controller.o ../HotWheels/controller.cpp
 
+modificaveicoli.o: ../HotWheels/modificaveicoli.cpp ../HotWheels/modificaveicoli.h \
+		../HotWheels/addveicoli.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o modificaveicoli.o ../HotWheels/modificaveicoli.cpp
+
 qrc_risorse.o: qrc_risorse.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_risorse.o qrc_risorse.cpp
 
@@ -498,6 +514,9 @@ moc_addveicoli.o: moc_addveicoli.cpp
 
 moc_controller.o: moc_controller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_controller.o moc_controller.cpp
+
+moc_modificaveicoli.o: moc_modificaveicoli.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_modificaveicoli.o moc_modificaveicoli.cpp
 
 ####### Install
 

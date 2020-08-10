@@ -32,7 +32,8 @@ SOURCES += \
     autotreno.cpp \
     viewlistaveicoli.cpp \
     addveicoli.cpp \
-    controller.cpp
+    controller.cpp \
+    modificaveicoli.cpp
 
 
 HEADERS += \
@@ -44,7 +45,8 @@ HEADERS += \
     viewlistaveicoli.h \
     addveicoli.h \
     controller.h \
-    pointer.h
+    pointer.h \
+    modificaveicoli.h
 
 FORMS += \
         mainwindow.ui
