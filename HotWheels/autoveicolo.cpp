@@ -1,11 +1,19 @@
 #include "autoveicolo.h"
 
 
-autoveicolo::autoveicolo(string t, string ma, string mod, string c, int y, int m, int d, int p, int pe, int a) :
-    targa(t), marca(ma), modello(mod), classeambientale(c), annoImmatricolazione(y,m,d), potenza(p), peso(pe), numeroAssi(a) {}
+autoveicolo::autoveicolo(string t, string ma, string mod, string c, int y, int m, int d, int p, int pe, int a, double b) :
+    targa(t), marca(ma), modello(mod), classeambientale(c), annoImmatricolazione(y,m,d), potenza(p), peso(pe), numeroAssi(a), bollo(b) {}
 
 bool autoveicolo::operator==(const autoveicolo &a) const {
     return targa == a.getTarga();
+}
+
+bool autoveicolo::operator<(const autoveicolo &a) const {
+    return targa < a.getTarga();
+}
+
+bool autoveicolo::operator>(const autoveicolo &a) const {
+    return targa > a.getTarga();
 }
 
 string autoveicolo::getTarga() const {

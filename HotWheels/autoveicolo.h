@@ -15,15 +15,21 @@ private:
     int peso;
     int numeroAssi;
 
+    double bollo;
+
 
 
 public:
-    autoveicolo(string ="", string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0);
+    autoveicolo(string ="", string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0, double = 0);
     ~autoveicolo() = default;
 
     virtual bool operator==(const autoveicolo&) const;
 
-    int calcolaBollo(const int&);
+    virtual bool operator<(const autoveicolo&) const;
+    virtual bool operator>(const autoveicolo&) const;
+
+
+    virtual double calcolaBollo(const autoveicolo&) const = 0; //metodo virtuale puro
 
     string getTarga() const;
     string getMarca() const;
