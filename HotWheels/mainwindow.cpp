@@ -58,6 +58,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    /*QStringList prova;
+    prova <<"targa"<< "marca"<< "modello"<< "cl amb"<< "anno imm"<< "potenza"<< "peso"<< "numero assi"<< "bollo";
+    for(auto i = 0; i < 1; i++) {
+        for(auto a = 0; a < veicoliTable->columnCount(); a++) {
+            veicoliTable->setItem(i, a, new QTableWidgetItem(prova[a]));
+        }
+    }*/
     //veicoliTable->horizontalHeader()->setStretchLastSection(true);
 
     /*Veicoli*/
