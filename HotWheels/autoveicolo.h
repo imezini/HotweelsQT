@@ -29,7 +29,7 @@ public:
     virtual bool operator>(const autoveicolo&) const;
 
 
-    virtual double calcolaBollo(const autoveicolo&) const = 0; //metodo virtuale puro
+    //virtual double calcolaBollo(const autoveicolo&) const = 0; //metodo virtuale puro
 
     string getTarga() const;
     string getMarca() const;

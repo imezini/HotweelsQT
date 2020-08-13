@@ -2,8 +2,8 @@
 
 
 
-automobile::automobile(string t, string ma, string mo,  string ca, int y, int m, int d, int po, int pe, int na) : autoveicolo(t, ma, mo, ca, y, m, d, po, pe, na) {}
-
+automobile::automobile(string t, string ma, string mo,  string ca, int y, int m, int d, int po, int pe, int na, int xy) : autoveicolo(t, ma, mo, ca, y, m, d, po, pe, na), x(xy) {}
+/*
 double automobile::calcolaBollo(const automobile& a) const {
     int x = a.getPotenza();
     double costo;
@@ -47,3 +47,4 @@ double automobile::calcolaBollo(const automobile& a) const {
     }
     return costo;
 }
+*/

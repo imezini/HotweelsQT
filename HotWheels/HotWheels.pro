@@ -33,7 +33,8 @@ SOURCES += \
     viewlistaveicoli.cpp \
     addveicoli.cpp \
     controller.cpp \
-    modveicoli.cpp
+    modveicoli.cpp \
+    model.cpp
 
 
 HEADERS += \
@@ -45,8 +46,9 @@ HEADERS += \
     viewlistaveicoli.h \
     addveicoli.h \
     controller.h \
-    pointer.h \
-    modveicoli.h
+    modveicoli.h \
+    model.h \
+    container.h
 
 FORMS += \
         mainwindow.ui

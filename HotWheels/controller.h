@@ -6,6 +6,7 @@
 #include <QFileDialog>
 #include "addveicoli.h"
 #include "mainwindow.h"
+#include "model.h"
 
 using std::ofstream;
 using std::endl;
@@ -18,12 +19,11 @@ public:
     explicit Controller(QObject *parent = nullptr);
     ~Controller();
 public slots:
-
+    void addVeicoloCont(const QStringList);
 
 private:
-
-
-
+    Model* m;
+    addVeicoli* addVeicoliW;
 
 };
 

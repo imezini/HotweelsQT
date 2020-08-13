@@ -24,7 +24,6 @@
 
 
 #include "viewlistaveicoli.h"
-#include "pointer.h"
 #include "addveicoli.h"
 #include "modveicoli.h"
 
