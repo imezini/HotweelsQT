@@ -1,16 +1,17 @@
 #ifndef AUTOTRENO_H
 #define AUTOTRENO_H
 
-#include "autoveicolo.h"
+#include "autocarro.h"
 
-class autotreno: virtual public autoveicolo
+class autotreno: public autocarro  {
 
-{
-private: int numeroassi;
+private:
+    int numeroAssi;
 
 public:
-    autotreno();
-  //  int= 0, string="", int=3
+    autotreno(string ="", string = "", string = "", int = 1900, int = 1, int = 1, int = 0, int = 0);
+
+    int getNumeroAssi();
 };
 
 #endif // AUTOTRENO_H

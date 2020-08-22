@@ -53,21 +53,26 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     veicoliTable= new QTableWidget();
     verticalLayout->addWidget(veicoliTable);
-    veicoliTable -> setRowCount(1);
-    veicoliTable -> setColumnCount(9);
+    veicoliTable->setRowCount(1);
+    veicoliTable->setColumnCount(9);
     header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-   /*
-    QStringList prova;
-    prova <<"targa"<< "marca"<< "modello"<< "cl amb"<< "anno imm"<< "potenza"<< "peso"<< "numero assi"<< "bollo";
-    for(int i = 0; i < 1; i++) {
-        for(int a = 0; a < veicoliTable->columnCount(); a++) {
-            veicoliTable->setItem(i, a, new QTableWidgetItem(prova[a]));
-        }
-    }
-    */
-    //veicoliTable->horizontalHeader()->setStretchLastSection(true);
+        QStringList *prova = new QStringList();
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+        prova->push_back("targa");
+            for(int a = 0; a < 9; a++) {
+                veicoliTable->setItem(0, a, new QTableWidgetItem(prova->at(a)));
+            }
+
+
 
     /*Veicoli*/
 
@@ -115,11 +120,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
      checkMaxAssi->setObjectName(QStringLiteral("checkMaxAssi"));
      checkMinAssi->setObjectName(QStringLiteral("checkMinAssi"));
      removeFilter->setObjectName(QStringLiteral("removeFilter"));
-
-
-     /*Parte connect */
-
-
 }
 
 
@@ -213,5 +213,13 @@ void MainWindow::colorEsonero(){
     checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
     checkEsonero->setStyleSheet("background-color:#3cb043;");
 }
+
+//void MainWindow::mostraVeicoli(const QStringList datiVeicolo){
+
+//    int col = 0;
+//    while(col < 9) {
+//        veicoliTable->setItem(0, col, datiVeicolo[col]);
+//    }
+//}
 
 

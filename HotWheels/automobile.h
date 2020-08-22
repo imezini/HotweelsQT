@@ -3,13 +3,21 @@
 
 #include "autoveicolo.h"
 
+class automobile: public autoveicolo {
 
-class automobile: virtual public autoveicolo {
 private:
-    int x;
+    string classeAmbientale;
+    int potenza;
+
 public:
-    automobile(string ="", string = "", string = "",  string = "", int = 1900, int = 1, int = 1, int = 0, int = 0, int = 0, int = 0);
+    automobile(string ="", string = "", string = "", int = 1900, int = 1, int = 1, string = "", int = 0);
     //double calcolaBollo(const automobile&) const;
+
+    string getClasseambientale() const;
+    int getPotenza() const;
+
+
 };
 
 #endif // AUTOMOBILE_H
+

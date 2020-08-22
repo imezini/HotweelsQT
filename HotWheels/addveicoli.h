@@ -15,10 +15,10 @@
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QStringList>
-
-
-
+#include <QComboBox>
+#include <QGroupBox>
 using std::string;
+
 
 class addVeicoli : public QWidget {
         Q_OBJECT
@@ -30,21 +30,21 @@ public:
 public slots:
     void azzeraRighe();
     virtual void conferma();
-
+    void sblocca(int) const;
 
 signals:
     void erroreInput(string);
     void inviaStringaVeicoli(const QStringList);
 
-
 protected:
+    QLabel *tipoVeicolo, *targa, *marca, *modello, *annoImm, *classeAmbientale, *potenza, *portata, *numeroAs;
     QVBoxLayout *verticalLayout;
-    QHBoxLayout* mainLayout,*bottoni;
-    QLineEdit *targaEdit, *marcaEdit, *modelloEdit, *classeAmbEdit, *potenzaEdit, *pesoEdit, *numeroAsEdit;
+    QHBoxLayout *mainLayout,*bottoni;
+    QComboBox *classeAmbBox, *tipoVeicoloBox;
+    QLineEdit *targaEdit, *marcaEdit, *modelloEdit, *potenzaEdit, *portataEdit, *numeroAsEdit;
     QDateEdit *annoImmEdit;
     QPushButton *salvaButton,*annullaButton;
-    QCheckBox* automobileCheckbox,*autotrenoCheckbox,*autocarroCheckbox,*esoneroCheckbox;
-
+    QCheckBox *esoneroCheckbox;
 };
 
 #endif // ADDVEICOLI_H

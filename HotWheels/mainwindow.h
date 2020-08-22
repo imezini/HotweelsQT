@@ -35,6 +35,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void colorInizio() const;
+    void mostraVeicoli(const QStringList);
+
 
 public slots:
     void openAddLayout();
@@ -66,3 +68,4 @@ private:
 
 
 #endif // MAINWINDOW_H
+

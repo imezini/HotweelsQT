@@ -1,8 +1,9 @@
 #include "autoveicolo.h"
 
 
-autoveicolo::autoveicolo(string t, string ma, string mod, string c, int y, int m, int d, int p, int pe, int a, double b) :
-    targa(t), marca(ma), modello(mod), classeambientale(c), annoImmatricolazione(y,m,d), potenza(p), peso(pe), numeroAssi(a), bollo(b) {}
+autoveicolo::autoveicolo(string t, string ma, string mod, int y, int m, int d) :
+    targa(t), marca(ma), modello(mod), annoImmatricolazione(y,m,d) {}
+
 
 bool autoveicolo::operator==(const autoveicolo &a) const {
     return targa == a.getTarga();
@@ -28,9 +29,6 @@ string autoveicolo::getModello() const {
     return modello;
 }
 
-string autoveicolo::getClasseambientale() const {
-    return classeambientale;
-}
 
 QDate autoveicolo::getAnnoImm() const {
     return annoImmatricolazione;
@@ -46,17 +44,5 @@ int autoveicolo::getMese() const {
 
 int autoveicolo::getAnno() const {
     return annoImmatricolazione.QDate::year();
-}
-
-int autoveicolo::getPotenza() const {
-    return potenza;
-}
-
-int autoveicolo::getPeso() const {
-    return peso;
-}
-
-int autoveicolo::getNumeroAssi() const {
-    return numeroAssi;
 }
 
