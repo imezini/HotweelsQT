@@ -58,19 +58,19 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        QStringList *prova = new QStringList();
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-        prova->push_back("targa");
-            for(int a = 0; a < 9; a++) {
-                veicoliTable->setItem(0, a, new QTableWidgetItem(prova->at(a)));
-            }
+//        QStringList *prova = new QStringList();
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//        prova->push_back("cacca");
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//        prova->push_back("targa");
+//            for(int a = 0; a < 9; a++) {
+//                veicoliTable->setItem(0, a, new QTableWidgetItem(prova->at(a)));
+//            }
 
 
 
@@ -214,12 +214,14 @@ void MainWindow::colorEsonero(){
     checkEsonero->setStyleSheet("background-color:#3cb043;");
 }
 
-//void MainWindow::mostraVeicoli(const QStringList datiVeicolo){
-
-//    int col = 0;
-//    while(col < 9) {
-//        veicoliTable->setItem(0, col, datiVeicolo[col]);
+//void MainWindow::mostraVeicoli(const QStringList targaVeicoli){
+//    int i = 0;
+//    auto it = targaVeicoli.begin();
+//    while(it != targaVeicoli.end()){
+//        veicoliTable->insertRow(i);
+//        veicoliTable->setItem(i,1,new QTableWidgetItem(targaVeicoli.at(i)));
+//        ++it;
+//        ++i;
 //    }
 //}
-
 

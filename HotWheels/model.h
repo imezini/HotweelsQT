@@ -13,10 +13,13 @@ class Model : public QObject {
     Q_OBJECT
 public:
     Model();
+    //QStringList getListaVeicoli();
 
 public slots:
-
     void addInList(const QStringList);
+
+signals:
+    //void veicoloInLista();
 
 private:
     Container<autoveicolo> *datiTotali;

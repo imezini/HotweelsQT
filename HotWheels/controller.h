@@ -21,9 +21,12 @@ public:
 public slots:
     void addVeicoloCont(const QStringList);
 
+    //void updateVeicoliTable();
+
 private:
-    Model* m;
-    addVeicoli* addVeicoliW;
+    MainWindow *view;
+    Model *m;
+    addVeicoli *addVeicoliW;
 
 };
 
