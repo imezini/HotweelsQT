@@ -1,6 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "pointer.h"
 #include "container.h"
 #include "autoveicolo.h"
 #include "automobile.h"
@@ -13,16 +14,20 @@ class Model : public QObject {
     Q_OBJECT
 public:
     Model();
-    //QStringList getListaVeicoli();
+    QStringList getListaVeicoli();
 
 public slots:
     void addInList(const QStringList);
 
 signals:
-    //void veicoloInLista();
+    void veicoloInLista();
+
 
 private:
-    Container<autoveicolo> *datiTotali;
+
+    Container <pointer<autoveicolo>> *datiTotali;
+    Container <pointer<autoveicolo>> *datiFiltrati;
+    bool modificato;
 };
 
 #endif // MODEL_H

@@ -20,6 +20,7 @@
 using std::string;
 
 
+
 class addVeicoli : public QWidget {
         Q_OBJECT
 public:
@@ -37,6 +38,7 @@ signals:
     void inviaStringaVeicoli(const QStringList);
 
 protected:
+
     QLabel *tipoVeicolo, *targa, *marca, *modello, *annoImm, *classeAmbientale, *potenza, *portata, *numeroAs;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *mainLayout,*bottoni;

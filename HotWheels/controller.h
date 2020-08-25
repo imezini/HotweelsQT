@@ -21,7 +21,7 @@ public:
 public slots:
     void addVeicoloCont(const QStringList);
 
-    //void updateVeicoliTable();
+    void updateVeicoliTable();
 
 private:
     MainWindow *view;

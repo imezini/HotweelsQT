@@ -23,8 +23,8 @@
 #include <QList>
 
 
-#include "viewlistaveicoli.h"
-
+//#include "viewlistaveicoli.h"
+#include "pointer.h"
 #include "addveicoli.h"
 #include "modveicoli.h"
 
@@ -36,7 +36,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void colorInizio() const;
-    //void mostraVeicoli(const QStringList);
+    void mostraVeicoli(const QStringList);
 
 public slots:
     void openAddLayout();
@@ -68,4 +68,3 @@ private:
 
 
 #endif // MAINWINDOW_H
-

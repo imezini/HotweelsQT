@@ -10,7 +10,7 @@ private:
 
 public:
     autotreno(string ="", string = "", string = "", int = 1900, int = 1, int = 1, int = 0, int = 0);
-
+    autotreno* clone() const override;
     int getNumeroAssi();
 };
 

@@ -48,7 +48,8 @@ HEADERS += \
     controller.h \
     modveicoli.h \
     model.h \
-    container.h
+    container.h \
+    pointer.h
 
 FORMS += \
         mainwindow.ui

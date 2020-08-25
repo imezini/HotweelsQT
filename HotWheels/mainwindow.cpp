@@ -214,14 +214,13 @@ void MainWindow::colorEsonero(){
     checkEsonero->setStyleSheet("background-color:#3cb043;");
 }
 
-//void MainWindow::mostraVeicoli(const QStringList targaVeicoli){
-//    int i = 0;
-//    auto it = targaVeicoli.begin();
-//    while(it != targaVeicoli.end()){
-//        veicoliTable->insertRow(i);
-//        veicoliTable->setItem(i,1,new QTableWidgetItem(targaVeicoli.at(i)));
-//        ++it;
-//        ++i;
-//    }
-//}
+void MainWindow::mostraVeicoli(const QStringList targaVeicoli){
+    auto it = targaVeicoli.begin();
+    int i=0;
+    while(it != targaVeicoli.end()){
+        veicoliTable->setItem(1, 1, new QTableWidgetItem(*it));
+        ++it;
+        i++;
+    }
+}
 

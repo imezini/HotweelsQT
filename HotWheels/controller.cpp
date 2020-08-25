@@ -15,6 +15,6 @@ void Controller::addVeicoloCont(const QStringList v) {
         m->addInList(v);
 }
 
-//void Controller::updateVeicoliTable() {
-//    view->mostraVeicoli(m->getListaVeicoli());
-//}
+void Controller::updateVeicoliTable() {
+    view->mostraVeicoli(m->getListaVeicoli());
+}

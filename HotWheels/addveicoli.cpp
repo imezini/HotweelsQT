@@ -103,6 +103,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
     connect(annullaButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(tipoVeicoloBox, SIGNAL(activated(int)), this, SLOT(sblocca(int)));
 
+
 }
 
 //ok
@@ -213,9 +214,5 @@ void addVeicoli::sblocca(int n) const {
         break;
     }
 }
-
-
-
-
 
 

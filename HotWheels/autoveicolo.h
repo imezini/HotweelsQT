@@ -22,6 +22,7 @@ public:
     virtual bool operator<(const autoveicolo&) const;
     virtual bool operator>(const autoveicolo&) const;
 
+    virtual autoveicolo* clone() const = 0;
     //virtual double calcolaBollo(const autoveicolo&) const; //metodo virtuale puro
 
     string getTarga() const;

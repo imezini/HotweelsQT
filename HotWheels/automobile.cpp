@@ -4,6 +4,10 @@
 
 automobile::automobile(string t, string ma, string mod, int y, int m, int d, string cl, int po) : autoveicolo(t, ma, mod, y, m, d), classeAmbientale(cl), potenza(po){}
 
+automobile *automobile::clone() const {
+    return new automobile(*this);
+}
+
 
 
 string automobile::getClasseambientale() const {
@@ -52,3 +56,4 @@ double automobile::calcolaBollo(const automobile& a) const {
     }
 }
 */
+
