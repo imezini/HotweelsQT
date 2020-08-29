@@ -16,7 +16,7 @@ private:
 public:
     autoveicolo(string ="", string = "", string = "", int = 1900, int = 1, int = 1);
 
-    ~autoveicolo() = default;
+    virtual ~autoveicolo() = default;
 
     virtual bool operator==(const autoveicolo&) const;
     virtual bool operator<(const autoveicolo&) const;

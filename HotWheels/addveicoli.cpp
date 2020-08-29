@@ -100,7 +100,7 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
     //PARTE CONNECT
 
     connect(salvaButton, SIGNAL(clicked()), this, SLOT(conferma()));
-    connect(annullaButton, SIGNAL(clicked()), this, SLOT(close()));
+    connect(annullaButton, SIGNAL(clicked()), this, SLOT(chiudi()));
     connect(tipoVeicoloBox, SIGNAL(activated(int)), this, SLOT(sblocca(int)));
 
 
@@ -167,6 +167,11 @@ void addVeicoli:: conferma(){
 
             veicoloAggiunto();
         }
+}
+
+void addVeicoli::chiudi() {
+    this->azzeraRighe();
+    this->close();
 }
 
 //ok

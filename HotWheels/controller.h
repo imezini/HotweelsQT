@@ -18,16 +18,15 @@ class Controller : public QObject
 public:
     explicit Controller(QObject *parent = nullptr);
     ~Controller();
-public slots:
-    void addVeicoloCont(const QStringList);
 
+public slots:
+
+    void addVeicoloCont(const QStringList);
     void updateVeicoliTable();
 
 private:
     MainWindow *view;
     Model *m;
-    addVeicoli *addVeicoliW;
-
 };
 
 #endif // CONTROLLER_H

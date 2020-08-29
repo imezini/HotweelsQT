@@ -31,6 +31,7 @@ public:
 public slots:
     void azzeraRighe();
     virtual void conferma();
+    virtual void chiudi();
     void sblocca(int) const;
 
 signals:

@@ -6,7 +6,7 @@ Model::Model() : datiTotali(new Container<pointer<autoveicolo>>()), datiFiltrati
 QStringList Model::getListaVeicoli() {
     QString singolo;
     QStringList tot;
-    int i = 0;
+    //int i = 0;
     auto it = datiTotali->begin();
     if(!datiTotali->isEmpty()){
         while(it!=datiTotali->end()){

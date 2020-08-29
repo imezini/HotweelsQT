@@ -1,10 +1,11 @@
 #include "controller.h"
 
-Controller::Controller(QObject *parent) : QObject(parent),view(new MainWindow()), m(new Model()), addVeicoliW(new addVeicoli()) {
+Controller::Controller(QObject *parent) : QObject(parent),view(new MainWindow()), m(new Model()) {
 
-    connect(addVeicoliW, SIGNAL(inviaStringaVeicoli(const QStringList)), this, SLOT(addVeicoloCont(const QStringList)));
     connect(m, SIGNAL(veicoloInLista()), this, SLOT(updateVeicoliTable()));
+    connect(view->vistaAdd, SIGNAL(inviaStringaVeicoli(const QStringList)), this, SLOT(addVeicoloCont(const QStringList)));
 
+    view->show();
 }
 
 Controller::~Controller() {

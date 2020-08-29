@@ -23,7 +23,7 @@
 #include <QList>
 
 
-//#include "viewlistaveicoli.h"
+#include "viewlistaveicoli.h"
 #include "pointer.h"
 #include "addveicoli.h"
 #include "modveicoli.h"
@@ -31,6 +31,7 @@
 class MainWindow : public QWidget
 {
     Q_OBJECT
+    friend class Controller;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
@@ -39,7 +40,7 @@ public:
     void mostraVeicoli(const QStringList);
 
 public slots:
-    void openAddLayout();
+    void openAddLayout() const;
     void openModLayout();
     void colorAutomobile();
     void colorAutotreno();
@@ -50,17 +51,21 @@ public slots:
 
 
 private:
+
+    addVeicoli* vistaAdd;
+    modVeicoli* vistaMod;
+    viewListaVeicoli* veicoliList;
+
     QVBoxLayout* mainLayout, *verticalLayout;
     QHBoxLayout* horizontal, *Bottonisotto;
     QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
     QGroupBox* veicoliGroup1;
-    QTableWidget* veicoliTable;
+//    QTableWidget* veicoliTable;
     QStringList header;
 
-    addVeicoli* vistaAdd;
-    modVeicoli* vistaMod;
+
 
     void setMainWindowStyle();
 

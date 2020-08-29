@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli()), vistaMod(new modVeicoli()) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli()), vistaMod(new modVeicoli()), veicoliList(new viewListaVeicoli(this)) {
 
     setMinimumSize(950,600);
     setWindowTitle("Controlla Bollo");
@@ -51,13 +51,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     /*tabella veicoli*/
 
-    veicoliTable= new QTableWidget();
-    verticalLayout->addWidget(veicoliTable);
-    veicoliTable->setRowCount(1);
-    veicoliTable->setColumnCount(9);
-    header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
-    veicoliTable->setHorizontalHeaderLabels(header);
-    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+//    veicoliTable= new QTableWidget();
+//    verticalLayout->addWidget(veicoliTable);
+//    veicoliTable->setRowCount(1);
+//    veicoliTable->setColumnCount(9);
+//    header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
+//    veicoliTable->setHorizontalHeaderLabels(header);
+//    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 //        QStringList *prova = new QStringList();
 //        prova->push_back("targa");
 //        prova->push_back("targa");
@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     lineCerca = new QLineEdit(this);
     lineCerca->setPlaceholderText("Cerca Veicolo");
     layoutListaVeicoli->addWidget(lineCerca);
-    layoutListaVeicoli->addWidget(veicoliTable);
+    layoutListaVeicoli->addWidget(veicoliList);
     veicoliGroup->setLayout(layoutListaVeicoli);
     addButton = new QPushButton("Aggiungi veicolo",this);
     addButton->setMinimumWidth(110);
@@ -129,7 +129,7 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::openAddLayout() {
+void MainWindow::openAddLayout() const {
     vistaAdd->show();
 }
 
@@ -215,12 +215,12 @@ void MainWindow::colorEsonero(){
 }
 
 void MainWindow::mostraVeicoli(const QStringList targaVeicoli){
+    veicoliList->reset();
+    veicoliList->clear();
     auto it = targaVeicoli.begin();
-    int i=0;
     while(it != targaVeicoli.end()){
-        veicoliTable->setItem(1, 1, new QTableWidgetItem(*it));
+        veicoliList->addItem(*it);
         ++it;
-        i++;
     }
 }
 

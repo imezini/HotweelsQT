@@ -22,7 +22,6 @@ public slots:
 signals:
     void veicoloInLista();
 
-
 private:
 
     Container <pointer<autoveicolo>> *datiTotali;
