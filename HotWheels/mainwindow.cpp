@@ -158,17 +158,13 @@ void MainWindow::openModLayout() {
 
 void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
 
-    auto it = targaVeicoli.begin();
-    int c = 0;
-    int i = 1;
-      while(it != targaVeicoli.end()){
-          veicoliTable->setRowCount(i);
-          while(c < 3){ //provvisorio provando a passargli una QStringList di massimo 3 stringhe
-            veicoliTable->setItem(i-1, c, new QTableWidgetItem(targaVeicoli.at(i-1)[c]));
-            ++c;
+    int r = 1;
+    for(auto it = targaVeicoli.begin(); it != targaVeicoli.end(); it++){
+        veicoliTable->setRowCount(r);
+        for(int c = 0; c < 4; c++){ //provvisorio provando a passargli una QStringList di massimo 4 stringhe
+             veicoliTable->setItem(r-1, c, new QTableWidgetItem(targaVeicoli.at(r-1)[c]));
         }
-          ++it;
-          ++i;
+        r++;
     }
 }
 

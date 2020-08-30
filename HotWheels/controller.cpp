@@ -42,7 +42,7 @@ void Controller::updateVeicoliTable() {
 
 void Controller::filtraTuttiVeicolo()
 {
-    m->resetFiltro();
+    //m->resetFiltro();
     updateVeicoliTable();
 }
 

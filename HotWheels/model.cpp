@@ -12,6 +12,67 @@ Model::~Model()
     delete datiFiltrati;
 }
 
+void Model::addInList(const QStringList v) {
+    pointer<autoveicolo> autoveicolo;
+    QDate annoImm = QDate::fromString(v.at(4));
+    if(v.at(0) == "Automobile"){
+        autoveicolo = new automobile(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(), v.at(9) == "true" ? true : false , v.at(5).toStdString(), stoi(v.at(6).toStdString()));
+    }
+    else if(v.at(0) == "Autocarro < 12 tonnellate"){
+        autoveicolo = new autocarro(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(),v.at(9) == "true" ? true : false , stoi(v.at(7).toStdString()));
+    } else
+        autoveicolo = new autotreno(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(),v.at(9) == "true" ? true : false , stoi(v.at(7).toStdString()), stoi(v.at(8).toStdString()));
+
+    datiTotali->addInOrder(autoveicolo);
+    emit veicoloInLista();
+}
+
+QList<QStringList> Model::getListaVeicoli() {
+
+    QList<QStringList> tot;
+    QStringList* riga = new QStringList();
+
+    auto it = datiTotali->begin();
+    if(!datiTotali->isEmpty()){
+        while(it != datiTotali->end()){
+            if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Automobile") {
+                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
+                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
+                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
+                riga->push_back(QString::fromStdString((*(*it)).getModello()));
+//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
+//                riga->push_back(QString::fromStdString((*(*it)).getClasseAmbientale()));
+//                riga->push_back(QString::fromStdString((*(*it)).getPotenza()));
+                tot.push_back(*riga);
+                riga->clear();
+            }
+            else if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Automobile"){
+                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
+                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
+                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
+                riga->push_back(QString::fromStdString((*(*it)).getModello()));
+//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
+//                riga->push_back(QString::fromStdString((*(*it)).getPortata()));
+                tot.push_back(*riga);
+                riga->clear();
+            }
+            else{
+                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
+                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
+                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
+                riga->push_back(QString::fromStdString((*(*it)).getModello()));
+//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
+//                riga->push_back(QString::fromStdString((*(*it)).getPortata()));
+//                riga->push_back(QString::fromStdString((*(*it)).getNumeroAssi()));
+                tot.push_back(*riga);
+                riga->clear();
+            }
+                ++it;
+        }
+    }
+    return tot;
+}
+
 
 //QStringList Model::getListaVeicoli(QMap<int, int>& indexMapper) const
 //{
@@ -34,7 +95,7 @@ Model::~Model()
 
 void Model::resetFiltro()
 {
-    emit resetColoreFiltro();
+    //emit resetColoreFiltro();
     datiFiltrati->clear();
     for(auto it=datiTotali->begin();it!=datiTotali->end();++it){
         datiFiltrati->addInOrder(*it);
@@ -144,40 +205,4 @@ QStringList Model::getListaVeicoliFiltrata(const QString v, QMap<unsigned int, u
 
 
 
-QList<QStringList> Model::getListaVeicoli() {
 
-    QList<QStringList> tot;
-    QStringList* riga = new QStringList();
-
-    auto it = datiTotali->begin();
-    if(!datiTotali->isEmpty()){
-        while(it != datiTotali->end()){
-                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
-                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
-                riga->push_back(QString::fromStdString((*(*it)).getModello()));
-                tot.push_back(*riga);
-                riga->clear();
-                ++it;
-            }
-        }
-     return tot;
-}
-
-
-
-
-
-void Model::addInList(const QStringList v) {
-    pointer<autoveicolo> autoveicolo;
-    QDate annoImm = QDate::fromString(v.at(4));
-    if(v.at(0) == "Automobile"){
-        autoveicolo = new automobile(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(),v.at(5) == "true" ? true : false ,v.at(6).toStdString(), stoi(v.at(7).toStdString()));
-    }
-    else if(v.at(0) == "Autocarro < 12 tonnellate"){
-        autoveicolo = new autocarro(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(), v.at(5) == "true" ? true : false, stoi(v.at(8).toStdString()));
-    } else
-        autoveicolo = new autotreno(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(), v.at(5) == "true" ? true : false,stoi(v.at(8).toStdString()), stoi(v.at(9).toStdString()));
-
-    datiTotali->addInOrder(autoveicolo);
-    emit veicoloInLista();
-}
