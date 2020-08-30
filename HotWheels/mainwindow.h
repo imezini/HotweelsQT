@@ -15,18 +15,14 @@
 #include <QLabel>
 #include <QFormLayout>
 #include <QTableWidget>
-#include <QTableView>
-#include <QFile>
-#include <QStringList>
 #include <QSizePolicy>
 #include <QString>
 #include <QList>
 
-
-#include "viewlistaveicoli.h"
 #include "pointer.h"
 #include "addveicoli.h"
 #include "modveicoli.h"
+#include "autoveicolo.h"
 
 class MainWindow : public QWidget
 {
@@ -37,7 +33,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void colorInizio() const;
-    void mostraVeicoli(const QStringList);
+    void mostraVeicoli(QList<QStringList>);
+    const QString getParolaCercata() const;
+
 
 public slots:
     void openAddLayout() const;
@@ -49,12 +47,10 @@ public slots:
     void colorMaxAssi();
     void colorEsonero();
 
-
 private:
 
     addVeicoli* vistaAdd;
     modVeicoli* vistaMod;
-    viewListaVeicoli* veicoliList;
 
     QVBoxLayout* mainLayout, *verticalLayout;
     QHBoxLayout* horizontal, *Bottonisotto;
@@ -62,12 +58,21 @@ private:
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
     QGroupBox* veicoliGroup1;
-//    QTableWidget* veicoliTable;
+    QTableWidget* veicoliTable;
     QStringList header;
 
-
-
     void setMainWindowStyle();
+
+signals:
+  //  void signOpenAddWindow();
+    void filtroTutti();
+    void filtroAutomobile();
+    void filtroAutotreno();
+    void filtroAutocarro();
+    void filtroMinAssi();
+    void filtroMaxAssi();
+    void filtroEsonero();
+ //   void signEsportaPDFClienti();
 
 };
 

@@ -30,7 +30,6 @@ SOURCES += \
     automobile.cpp \
     autocarro.cpp \
     autotreno.cpp \
-    viewlistaveicoli.cpp \
     addveicoli.cpp \
     controller.cpp \
     modveicoli.cpp \
@@ -43,7 +42,6 @@ HEADERS += \
     automobile.h \
     autocarro.h \
     autotreno.h \
-    viewlistaveicoli.h \
     addveicoli.h \
     controller.h \
     modveicoli.h \

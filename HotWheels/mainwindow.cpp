@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli()), vistaMod(new modVeicoli()), veicoliList(new viewListaVeicoli(this)) {
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli(this)), vistaMod(new modVeicoli(this)) {
 
     setMinimumSize(950,600);
     setWindowTitle("Controlla Bollo");
@@ -51,28 +51,30 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     /*tabella veicoli*/
 
-//    veicoliTable= new QTableWidget();
-//    verticalLayout->addWidget(veicoliTable);
-//    veicoliTable->setRowCount(1);
-//    veicoliTable->setColumnCount(9);
-//    header << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
-//    veicoliTable->setHorizontalHeaderLabels(header);
-//    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//        QStringList *prova = new QStringList();
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//        prova->push_back("cacca");
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//        prova->push_back("targa");
-//            for(int a = 0; a < 9; a++) {
-//                veicoliTable->setItem(0, a, new QTableWidgetItem(prova->at(a)));
-//            }
-
-
+    veicoliTable = new QTableWidget();
+    verticalLayout->addWidget(veicoliTable);
+    veicoliTable->setColumnCount(10);
+    header <<"Tipo Veicolo" << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
+    veicoliTable->setHorizontalHeaderLabels(header);
+    veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+//    veicoliTable->setRowCount(2);
+//    QList<QStringList> prova;
+//    QStringList *listaProva = new QStringList();
+//    QStringList *listaProva2 = new QStringList();
+//    listaProva->push_back("cacca");
+//    listaProva->push_back("cacca");
+//    listaProva->push_back("cacca");
+//    listaProva2->push_back("merda");
+//    listaProva2->push_back("merda");
+//    listaProva2->push_back("merda");
+//    prova.push_back(*listaProva);
+//    prova.push_back(*listaProva2);
+//    QList<QStringList>prova2 = prova;
+//    for(int r=0; r<2; r++){
+//        for(int c=0; c<3; c++){
+//            veicoliTable->setItem(r,c, new QTableWidgetItem(prova2.at(r)[c]));
+//        }
+//    }
 
     /*Veicoli*/
 
@@ -81,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     lineCerca = new QLineEdit(this);
     lineCerca->setPlaceholderText("Cerca Veicolo");
     layoutListaVeicoli->addWidget(lineCerca);
-    layoutListaVeicoli->addWidget(veicoliList);
+    layoutListaVeicoli->addWidget(veicoliTable);
     veicoliGroup->setLayout(layoutListaVeicoli);
     addButton = new QPushButton("Aggiungi veicolo",this);
     addButton->setMinimumWidth(110);
@@ -98,9 +100,25 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     Bottonisotto->addWidget(modButton);
     Bottonisotto->addWidget(removeButton);
 
+
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
     connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
 
+    connect(removeFilter,SIGNAL(clicked()),this,SIGNAL(filtroTutti()));
+    connect(checkAutomobile, SIGNAL(clicked()), this, SIGNAL(filtroAutomobile()));
+    connect(checkAutocarro, SIGNAL(clicked()), this, SIGNAL(filtroAutocarro()));
+    connect(checkAutotreno, SIGNAL(clicked()) , this ,SIGNAL(filtroAutotreno()));
+    connect(checkMaxAssi, SIGNAL(clicked()) , this , SIGNAL(filtroMaxAssi()));
+    connect(checkMinAssi, SIGNAL(clicked()), this , SIGNAL(filtroMinAssi()));
+    connect(checkEsonero, SIGNAL(clicked()), this , SIGNAL(filtroEsonero()));
+    connect(checkAutomobile, SIGNAL(clicked()), this, SLOT(colorAutomobile()));
+    connect(checkAutocarro, SIGNAL(clicked()), this, SLOT(colorAutocarro()));
+    connect(checkAutotreno, SIGNAL(clicked()) , this ,SLOT(colorAutotreno()));
+    connect(checkMaxAssi, SIGNAL(clicked()) , this ,SLOT (colorMaxAssi()));
+    connect(checkMinAssi, SIGNAL(clicked()), this , SLOT(colorMinAssi()));
+    connect(checkEsonero, SIGNAL(clicked()), this , SLOT(colorEsonero()));
+
+     // connect(checkAutotreno, SIGNAL(clicked()), this, SIGNAL(signEsportaPDFClienti()));
 
     /*Bollo*/
 
@@ -138,6 +156,29 @@ void MainWindow::openModLayout() {
 }
 
 
+void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
+
+    auto it = targaVeicoli.begin();
+    int c = 0;
+    int i = 1;
+      while(it != targaVeicoli.end()){
+          veicoliTable->setRowCount(i);
+          while(c < 3){ //provvisorio provando a passargli una QStringList di massimo 3 stringhe
+            veicoliTable->setItem(i-1, c, new QTableWidgetItem(targaVeicoli.at(i-1)[c]));
+            ++c;
+        }
+          ++it;
+          ++i;
+    }
+}
+
+
+const QString MainWindow::getParolaCercata() const
+{
+    return lineCerca->text();
+}
+
+
 // colori+css
 
 void MainWindow::setMainWindowStyle(){
@@ -154,7 +195,6 @@ void MainWindow:: colorInizio() const{
     checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
     checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
     checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-
 }
 
 
@@ -165,8 +205,6 @@ void MainWindow::colorAutomobile(){
     checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
     checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
     checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-
-
 }
 
 void MainWindow::colorAutotreno(){
@@ -212,15 +250,5 @@ void MainWindow::colorEsonero(){
     checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
     checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
     checkEsonero->setStyleSheet("background-color:#3cb043;");
-}
-
-void MainWindow::mostraVeicoli(const QStringList targaVeicoli){
-    veicoliList->reset();
-    veicoliList->clear();
-    auto it = targaVeicoli.begin();
-    while(it != targaVeicoli.end()){
-        veicoliList->addItem(*it);
-        ++it;
-    }
 }
 

@@ -23,10 +23,23 @@ public slots:
 
     void addVeicoloCont(const QStringList);
     void updateVeicoliTable();
+    //void openAddView()const;
+    //void erroreInputRicevuto(string);
+    void filtraTuttiVeicolo();
+    void filtraTuttiAutomobile();
+    void filtraTuttiAutocarro();
+    void filtraTuttiAutotreno();
+    void filtraTuttiVeicoloMaxAssi();
+    void filtraTuttiVeicoloMinAssi();
+    void filtraTuttiVeicoloEsonero();
+    void resetTuttiColoreFiltro() const;
+//    void esportaPDFClienti()const;
 
 private:
     MainWindow *view;
     Model *m;
+    // QMap<unsigned int,unsigned int> indexTranslate;
+
 };
 
 #endif // CONTROLLER_H

@@ -21,7 +21,7 @@ using std::string;
 
 
 
-class addVeicoli : public QWidget {
+class addVeicoli : public QDialog {
         Q_OBJECT
 public:
     addVeicoli(QWidget *parent = nullptr);

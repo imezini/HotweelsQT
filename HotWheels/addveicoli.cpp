@@ -2,7 +2,7 @@
 
 using std::string;
 
-addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
+addVeicoli::addVeicoli(QWidget *parent) : QDialog(parent) {
 
     setMinimumSize(600,400);
     setWindowTitle("Finestra aggiunta veicoli");
@@ -34,7 +34,6 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
     annoImmEdit = (new QDateEdit(QDate::currentDate(),this));
     annoImmEdit->setCalendarPopup("es. gg/mm/aa");
 
-    esoneroCheckbox = new QCheckBox("Esonero bollo",this);
 
     //Label automobile
 
@@ -64,6 +63,8 @@ addVeicoli::addVeicoli(QWidget *parent) : QWidget(parent) {
     numeroAs = new QLabel("Numero Assi: ");
     numeroAsEdit = new QLineEdit();
     numeroAsEdit->setPlaceholderText("es. 3");
+
+    esoneroCheckbox = new QCheckBox("Esonero bollo", this);
 
     QFormLayout *formLayout = new QFormLayout();
     formLayout->setFormAlignment(Qt::AlignLeft);
@@ -219,5 +220,4 @@ void addVeicoli::sblocca(int n) const {
         break;
     }
 }
-
 
