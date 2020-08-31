@@ -1,16 +1,77 @@
 #include "model.h"
 
 Model::Model() : datiTotali(new Container<pointer<autoveicolo>>()), datiFiltrati(new Container<pointer<autoveicolo>>()), modificato(false) {
-    resetFiltro();
 }
 
-Model::~Model()
-{
-    datiTotali->clear();
-    datiFiltrati->clear();
-    delete datiTotali;
-    delete datiFiltrati;
+
+
+
+QList<QStringList> Model::getListaVeicoli() {
+
+    QList<QStringList> tot;
+    QStringList* riga = new QStringList();
+
+    auto it = datiTotali->begin();
+    int i = 0;
+    if(!datiTotali->isEmpty()){
+
+        while(it != datiTotali->end()){
+            pointer<autoveicolo> autoveicoloTmp = datiTotali->prendiNodoIndice(i);
+            if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Automobile") {
+                auto automobileTmp = dynamic_cast<automobile*>(&(*(autoveicoloTmp)));
+                riga->push_back(QString::fromStdString(automobileTmp->getTipoVeicolo()));
+                riga->push_back(QString::fromStdString(automobileTmp->getTarga()));
+                riga->push_back(QString::fromStdString(automobileTmp->getMarca()));
+                riga->push_back(QString::fromStdString(automobileTmp->getModello()));
+                riga->push_back(automobileTmp->getAnnoImm().toString("dd.MM.yyyy"));
+                riga->push_back(QString::fromStdString(automobileTmp->getClasseAmbientale()));
+                riga->push_back(QString::number(automobileTmp->getPotenza()));
+                riga->push_back("//");
+                riga->push_back("//");
+                riga->push_back(automobileTmp->getEsonero() ? "SI" : "NO");
+                //aggiungere anchE BOLLO in tutti
+                tot.push_back(*riga);
+                riga->clear();
+                i++;
+            }
+            else if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Autocarro < 12 tonnellate"){
+                auto autocarroTmp = dynamic_cast<autocarro*>(&(*(autoveicoloTmp)));
+                riga->push_back(QString::fromStdString(autocarroTmp->getTipoVeicolo()));
+                riga->push_back(QString::fromStdString(autocarroTmp->getTarga()));
+                riga->push_back(QString::fromStdString(autocarroTmp->getMarca()));
+                riga->push_back(QString::fromStdString(autocarroTmp->getModello()));
+                riga->push_back(autocarroTmp->getAnnoImm().toString("dd.MM.yyyy"));
+                riga->push_back("//");
+                riga->push_back("//");
+                riga->push_back(QString::number(autocarroTmp->getPortata()));
+                riga->push_back("//");
+                riga->push_back(autocarroTmp->getEsonero() ? "SI" : "NO");
+                tot.push_back(*riga);
+                riga->clear();
+                i++;
+            }
+            else{
+                auto autotrenoTmp = dynamic_cast<autotreno*>(&(*(autoveicoloTmp)));
+                riga->push_back(QString::fromStdString(autotrenoTmp->getTipoVeicolo()));
+                riga->push_back(QString::fromStdString(autotrenoTmp->getTarga()));
+                riga->push_back(QString::fromStdString(autotrenoTmp->getMarca()));
+                riga->push_back(QString::fromStdString(autotrenoTmp->getModello()));
+                riga->push_back(autotrenoTmp->getAnnoImm().toString("dd.MM.yyyy"));
+                riga->push_back("//");
+                riga->push_back("//");
+                riga->push_back(QString::number(autotrenoTmp->getPortata()));
+                riga->push_back(QString::number(autotrenoTmp->getNumeroAssi()));
+                riga->push_back(autotrenoTmp->getEsonero() ? "SI" : "NO");
+                tot.push_back(*riga);
+                riga->clear();
+                i++;
+            }
+                ++it;
+        }
+    }
+    return tot;
 }
+
 
 void Model::addInList(const QStringList v) {
     pointer<autoveicolo> autoveicolo;
@@ -26,183 +87,3 @@ void Model::addInList(const QStringList v) {
     datiTotali->addInOrder(autoveicolo);
     emit veicoloInLista();
 }
-
-QList<QStringList> Model::getListaVeicoli() {
-
-    QList<QStringList> tot;
-    QStringList* riga = new QStringList();
-
-    auto it = datiTotali->begin();
-    if(!datiTotali->isEmpty()){
-        while(it != datiTotali->end()){
-            if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Automobile") {
-                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
-                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
-                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
-                riga->push_back(QString::fromStdString((*(*it)).getModello()));
-//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
-//                riga->push_back(QString::fromStdString((*(*it)).getClasseAmbientale()));
-//                riga->push_back(QString::fromStdString((*(*it)).getPotenza()));
-                tot.push_back(*riga);
-                riga->clear();
-            }
-            else if(QString::fromStdString((*(*it)).getTipoVeicolo()) == "Automobile"){
-                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
-                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
-                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
-                riga->push_back(QString::fromStdString((*(*it)).getModello()));
-//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
-//                riga->push_back(QString::fromStdString((*(*it)).getPortata()));
-                tot.push_back(*riga);
-                riga->clear();
-            }
-            else{
-                riga->push_back(QString::fromStdString((*(*it)).getTipoVeicolo()));
-                riga->push_back(QString::fromStdString((*(*it)).getTarga()));
-                riga->push_back(QString::fromStdString((*(*it)).getMarca()));
-                riga->push_back(QString::fromStdString((*(*it)).getModello()));
-//                riga->push_back(QString::fromStdString((*(*it)).getAnnoImm()));
-//                riga->push_back(QString::fromStdString((*(*it)).getPortata()));
-//                riga->push_back(QString::fromStdString((*(*it)).getNumeroAssi()));
-                tot.push_back(*riga);
-                riga->clear();
-            }
-                ++it;
-        }
-    }
-    return tot;
-}
-
-
-//QStringList Model::getListaVeicoli(QMap<int, int>& indexMapper) const
-//{
-//    QStringList tot;
-//    QString singolo;
-//    auto it=datiTotali->begin();
-//    int count=0;
-//    if(!datiTotali->empty()){
-//        while(it!=datiTotali->end()){
-//            singolo = (QString::fromStdString((*(*it)).getTarga() + " " + (*(*it)).getModello()));
-//            indexMapper.insert((int)tot.count(),count);
-//            tot.push_back(singolo);
-//            count++;
-//            ++it;
-//        }
-//    }
-//    return ret;
-//}
-
-
-void Model::resetFiltro()
-{
-    //emit resetColoreFiltro();
-    datiFiltrati->clear();
-    for(auto it=datiTotali->begin();it!=datiTotali->end();++it){
-        datiFiltrati->addInOrder(*it);
-    }
-}
-
-QStringList Model::getListaVeicoliFiltrata(const QString v, QMap<unsigned int, unsigned int> &) const
-{
-    QStringList ret;
-    QString autoveicolo;
-    QRegExp regex(v,Qt::CaseInsensitive, QRegExp::Wildcard);
-    auto it=datiFiltrati->begin();
-    unsigned int count=0;
-    if(!datiFiltrati->isEmpty()){
-        if(v.at(0) == "Automobile"){
-           autoveicolo = (QString::fromStdString((*(*it)).getTarga()));
-            if(autoveicolo.contains(regex)){
-                //indexMapper.insert((uint)ret.count(),count);
-
-                ret.push_back(autoveicolo);
-            }
-            count++;
-            ++it;
-        }
-    }
-
-    return ret;
-}
-
-//QStringList Model::getListaClientiPDF() const
-//{
-//    QStringList ret;
-//       QString datiCliente;
-//       for(auto it=datiTotali->begin();it!=datiTotali->end() && !datiTotali->isEmpty();++it)
-//       {
-//           datiCliente =(QString::fromStdString(("N:" +(*(*it)).getTarga() + " ,C: " + (*(*it)).getMarca()+ " ,CF: " + (*(*it)).getModello())));
-//           ret.push_back(datiCliente);
-
-//}
-//    return ret;
-//}
-//void Model::fltrAutomobile()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<automobile*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrAutocarro()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<autocarro*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrAutotreno()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<autotreno*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrMaxAssi()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<MaxAssi*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrMinAssi()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<MinAssi*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrEsonero()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<Esonero*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-
-
-

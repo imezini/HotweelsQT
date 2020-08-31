@@ -18,7 +18,7 @@ class Model : public QObject {
     Q_OBJECT
 public:
     Model();
-    ~Model();
+    //~Model();
     QList<QStringList> getListaVeicoli();
     void resetFiltro();
     QStringList getListaVeicoliFiltrata(const QString,QMap<unsigned int,unsigned int> &) const;

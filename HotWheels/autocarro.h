@@ -3,7 +3,7 @@
 
 #include "autoveicolo.h"
 
-class autocarro: public autoveicolo {
+class autocarro: virtual public autoveicolo {
 
 private:
     int portata;
