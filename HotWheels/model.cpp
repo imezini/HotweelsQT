@@ -50,7 +50,7 @@ QList<QStringList> Model::getListaVeicoli() {
                 riga->push_back("//");
                 riga->push_back("//");
                 riga->push_back(automobileTmp->getEsonero() ? "SI" : "NO");
-                //aggiungere anchE BOLLO in tutti
+                riga->push_back(QString::number(automobileTmp->calcolaBollo(), 'f', 2) + " €");
                 tot.push_back(*riga);
                 riga->clear();
                 i++;
@@ -67,6 +67,7 @@ QList<QStringList> Model::getListaVeicoli() {
                 riga->push_back(QString::number(autocarroTmp->getPortata()));
                 riga->push_back("//");
                 riga->push_back(autocarroTmp->getEsonero() ? "SI" : "NO");
+                riga->push_back(QString::number(autocarroTmp->calcolaBollo(), 'f', 2) + " €");
                 tot.push_back(*riga);
                 riga->clear();
                 i++;

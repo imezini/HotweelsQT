@@ -19,41 +19,45 @@ int automobile::getPotenza() const {
 }
 
 
-/*
-double automobile::calcolaBollo(const automobile& a) const {
-    int x = a.getPotenza();
-    if(a.getClasseambientale() == "Euro 4" || a.getClasseambientale() == "Euro 5" || a.getClasseambientale() == "Euro 6") {
-        if(x < 100)
-            return x * 2,58;
-        else
-            return (100 * 2,58) + ((x-100) * 3,87);
-    }
-    else{
-        if(a.getClasseambientale() == "Euro 0"){
-            if(x < 100)
-                return x * 3;
+double automobile::calcolaBollo() const {
+
+  double bollo;
+  if(getEsonero())
+      bollo = (0.0);
+  else{
+      if(classeAmbientale == "Euro 4" || classeAmbientale == "Euro 5" || classeAmbientale == "Euro 6") {
+            if(potenza < 100)
+                bollo =  potenza * 2.58;
             else
-                return (100 * 3) + ((x-100) * 4,5);
+                bollo =  (100 * 2.58) + ((potenza-100) * 3.87);
         }
-        if(a.getClasseambientale() == "Euro 1"){
-            if(x < 100)
-                return x * 2,9;
-            else
-                return (100 * 2,9) + ((x-100) * 4,35);
+        else{
+            if(classeAmbientale == "Euro 0"){
+                if(potenza < 100)
+                    bollo =  potenza * 3;
+                else
+                    bollo =  (100 * 3) + ((potenza-100) * 4.5);
+            }
+            if(classeAmbientale == "Euro 1"){
+                if(potenza < 100)
+                    bollo =  potenza * 2.9;
+                else
+                    bollo =  (100 * 2.9) + ((potenza-100) * 4.35);
+            }
+            if(classeAmbientale == "Euro 2") {
+                if(potenza < 100)
+                    bollo =  potenza * 2.8;
+                else
+                    bollo =  (100 * 2.8) + ((potenza-100) * 4.2);
+            }
+            if(classeAmbientale == "Euro 3") {
+                if(potenza < 100)
+                    bollo =  potenza * 2.7;
+                else
+                    bollo =  (100 * 2.7) + ((potenza-100) * 4.05);
+            }
         }
-        if(a.getClasseambientale() == "Euro 2") {
-            if(x < 100)
-                return x * 2,8;
-            else
-                return (100 * 2,8) + ((x-100) * 4,2);
-        }
-        if(a.getClasseambientale() == "Euro 3") {
-            if(x < 100)
-                return x * 2,7;
-            else
-                return (100 * 2,7) + ((x-100) * 4,05);
-        }
-    }
+  }
+  return bollo;
 }
-*/
 

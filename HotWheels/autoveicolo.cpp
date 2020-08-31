@@ -17,6 +17,10 @@ bool autoveicolo::operator>(const autoveicolo &a) const {
     return targa > a.getTarga();
 }
 
+double autoveicolo::calcolaBollo() const {
+    return (0.0);
+}
+
 std::string autoveicolo::getTipoVeicolo() const {
     return tipoVeicolo;
 }

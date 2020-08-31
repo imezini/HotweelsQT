@@ -11,7 +11,7 @@ private:
 
 public:
     automobile(string = "", string ="", string = "", string = "", int = 1900, int = 1, int = 1,bool = false, string = "", int = 0);
-    //double calcolaBollo(const automobile&) const;
+    virtual double calcolaBollo() const;
     automobile* clone() const override;
     string getClasseAmbientale() const;
     int getPotenza() const;

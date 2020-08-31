@@ -26,7 +26,7 @@ public:
 
     virtual autoveicolo* clone() const = 0;
 
-    //virtual double calcolaBollo(const autoveicolo&) const; //metodo virtuale puro
+    virtual double calcolaBollo() const;
 
     string getTipoVeicolo() const;
     string getTarga() const;

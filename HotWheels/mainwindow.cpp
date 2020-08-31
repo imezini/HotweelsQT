@@ -143,7 +143,7 @@ void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
     int r = 1;
     for(auto it = targaVeicoli.begin(); it != targaVeicoli.end(); it++){
         veicoliTable->setRowCount(r);
-        for(int c = 0; c < 10; c++){
+        for(int c = 0; c < 11; c++){
              veicoliTable->setItem(r-1, c, new QTableWidgetItem(targaVeicoli.at(r-1)[c]));
         }
         r++;
