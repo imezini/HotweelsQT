@@ -3,7 +3,7 @@
 
 #include "autoveicolo.h"
 
-class automobile: virtual public autoveicolo {
+class automobile: public autoveicolo {
 
 private:
     string classeAmbientale;
@@ -13,7 +13,7 @@ public:
     automobile(string = "", string ="", string = "", string = "", int = 1900, int = 1, int = 1,bool = false, string = "", int = 0);
     //double calcolaBollo(const automobile&) const;
     automobile* clone() const override;
-    string getClasseAmbientale() const;
+    string getClasseambientale() const;
     int getPotenza() const;
 
 

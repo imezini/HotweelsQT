@@ -10,7 +10,7 @@ automobile *automobile::clone() const {
 
 
 
-string automobile::getClasseAmbientale() const {
+string automobile::getClasseambientale() const {
     return classeAmbientale;
 }
 

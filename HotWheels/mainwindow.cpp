@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli(this)), vistaMod(new modVeicoli(this)) {
 
-    setMinimumSize(1150,700);
+    setMinimumSize(950,600);
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
 
@@ -53,8 +53,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     veicoliTable = new QTableWidget();
     verticalLayout->addWidget(veicoliTable);
-    veicoliTable->setColumnCount(11);
-    header <<"Tipo Veicolo" << "Targa" << "Marca" << "Modello" << "Anno Immatr." << "Cl.Ambientale" << "Potenza" << "Portata" << "Numero Assi" <<"Esonero" << "Bollo";
+    veicoliTable->setColumnCount(10);
+    header <<"Tipo Veicolo" << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 //    veicoliTable->setRowCount(2);
@@ -104,6 +104,21 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
     connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
 
+    connect(removeFilter,SIGNAL(clicked()),this,SIGNAL(filtroTutti()));
+    connect(checkAutomobile, SIGNAL(clicked()), this, SIGNAL(filtroAutomobile()));
+    connect(checkAutocarro, SIGNAL(clicked()), this, SIGNAL(filtroAutocarro()));
+    connect(checkAutotreno, SIGNAL(clicked()) , this ,SIGNAL(filtroAutotreno()));
+    connect(checkMaxAssi, SIGNAL(clicked()) , this , SIGNAL(filtroMaxAssi()));
+    connect(checkMinAssi, SIGNAL(clicked()), this , SIGNAL(filtroMinAssi()));
+    connect(checkEsonero, SIGNAL(clicked()), this , SIGNAL(filtroEsonero()));
+    connect(checkAutomobile, SIGNAL(clicked()), this, SLOT(colorAutomobile()));
+    connect(checkAutocarro, SIGNAL(clicked()), this, SLOT(colorAutocarro()));
+    connect(checkAutotreno, SIGNAL(clicked()) , this ,SLOT(colorAutotreno()));
+    connect(checkMaxAssi, SIGNAL(clicked()) , this ,SLOT (colorMaxAssi()));
+    connect(checkMinAssi, SIGNAL(clicked()), this , SLOT(colorMinAssi()));
+    connect(checkEsonero, SIGNAL(clicked()), this , SLOT(colorEsonero()));
+
+     // connect(checkAutotreno, SIGNAL(clicked()), this, SIGNAL(signEsportaPDFClienti()));
 
     /*Bollo*/
 
@@ -146,12 +161,19 @@ void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
     int r = 1;
     for(auto it = targaVeicoli.begin(); it != targaVeicoli.end(); it++){
         veicoliTable->setRowCount(r);
-        for(int c = 0; c < 10; c++){
+        for(int c = 0; c < 4; c++){ //provvisorio provando a passargli una QStringList di massimo 4 stringhe
              veicoliTable->setItem(r-1, c, new QTableWidgetItem(targaVeicoli.at(r-1)[c]));
         }
         r++;
     }
 }
+
+
+const QString MainWindow::getParolaCercata() const
+{
+    return lineCerca->text();
+}
+
 
 // colori+css
 

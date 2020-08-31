@@ -50,7 +50,3 @@ int autoveicolo::getAnno() const {
     return annoImmatricolazione.QDate::year();
 }
 
-bool autoveicolo::getEsonero() const {
-    return esonero;
-}
-
