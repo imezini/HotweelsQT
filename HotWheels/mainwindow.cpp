@@ -3,7 +3,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeicoli(this)), vistaMod(new modVeicoli(this)) {
 
-    setMinimumSize(950,600);
+    setMinimumSize(1150,700);
     setWindowTitle("Controlla Bollo");
     mainLayout = new QVBoxLayout(this);
 
@@ -53,28 +53,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     veicoliTable = new QTableWidget();
     verticalLayout->addWidget(veicoliTable);
-    veicoliTable->setColumnCount(10);
-    header <<"Tipo Veicolo" << "Targa" << "Marca" << "Modello" << "Cl.Ambientale" << "Anno Immatr." << "Potenza" << "Peso" << "Numero Assi"<< "Bollo";
+    veicoliTable->setColumnCount(11);
+    header <<"Tipo Veicolo" << "Targa" << "Marca" << "Modello" << "Anno Immatr." << "Cl.Ambientale" << "Potenza" << "Portata" << "Numero Assi" <<"Esonero" << "Bollo";
     veicoliTable->setHorizontalHeaderLabels(header);
     veicoliTable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//    veicoliTable->setRowCount(2);
-//    QList<QStringList> prova;
-//    QStringList *listaProva = new QStringList();
-//    QStringList *listaProva2 = new QStringList();
-//    listaProva->push_back("cacca");
-//    listaProva->push_back("cacca");
-//    listaProva->push_back("cacca");
-//    listaProva2->push_back("merda");
-//    listaProva2->push_back("merda");
-//    listaProva2->push_back("merda");
-//    prova.push_back(*listaProva);
-//    prova.push_back(*listaProva2);
-//    QList<QStringList>prova2 = prova;
-//    for(int r=0; r<2; r++){
-//        for(int c=0; c<3; c++){
-//            veicoliTable->setItem(r,c, new QTableWidgetItem(prova2.at(r)[c]));
-//        }
-//    }
 
     /*Veicoli*/
 
@@ -161,13 +143,12 @@ void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
     int r = 1;
     for(auto it = targaVeicoli.begin(); it != targaVeicoli.end(); it++){
         veicoliTable->setRowCount(r);
-        for(int c = 0; c < 4; c++){ //provvisorio provando a passargli una QStringList di massimo 4 stringhe
+        for(int c = 0; c < 10; c++){
              veicoliTable->setItem(r-1, c, new QTableWidgetItem(targaVeicoli.at(r-1)[c]));
         }
         r++;
     }
 }
-
 
 const QString MainWindow::getParolaCercata() const
 {
