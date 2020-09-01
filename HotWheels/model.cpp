@@ -1,8 +1,6 @@
 #include "model.h"
 
-Model::Model() : datiTotali(new Container<pointer<autoveicolo>>()), datiFiltrati(new Container<pointer<autoveicolo>>()), modificato(false) {
-    resetFiltro();
-}
+Model::Model() : datiTotali(new Container<pointer<autoveicolo>>()), datiFiltrati(new Container<pointer<autoveicolo>>()), modificato(false) {}
 
 Model::~Model()
 {
@@ -46,7 +44,7 @@ QList<QStringList> Model::getListaVeicoli() {
                 riga->push_back(QString::fromStdString(automobileTmp->getModello()));
                 riga->push_back(automobileTmp->getAnnoImm().toString("dd.MM.yyyy"));
                 riga->push_back(QString::fromStdString(automobileTmp->getClasseAmbientale()));
-                riga->push_back(QString::number(automobileTmp->getPotenza()));
+                riga->push_back(QString::number(automobileTmp->getPotenza()) + " kw");
                 riga->push_back("//");
                 riga->push_back("//");
                 riga->push_back(automobileTmp->getEsonero() ? "SI" : "NO");
@@ -64,7 +62,7 @@ QList<QStringList> Model::getListaVeicoli() {
                 riga->push_back(autocarroTmp->getAnnoImm().toString("dd.MM.yyyy"));
                 riga->push_back("//");
                 riga->push_back("//");
-                riga->push_back(QString::number(autocarroTmp->getPortata()));
+                riga->push_back(QString::number(autocarroTmp->getPortata()) + " t");
                 riga->push_back("//");
                 riga->push_back(autocarroTmp->getEsonero() ? "SI" : "NO");
                 riga->push_back(QString::number(autocarroTmp->calcolaBollo(), 'f', 2) + " €");
@@ -81,9 +79,10 @@ QList<QStringList> Model::getListaVeicoli() {
                 riga->push_back(autotrenoTmp->getAnnoImm().toString("dd.MM.yyyy"));
                 riga->push_back("//");
                 riga->push_back("//");
-                riga->push_back(QString::number(autotrenoTmp->getPortata()));
+                riga->push_back(QString::number(autotrenoTmp->getPortata()) + " t");
                 riga->push_back(QString::number(autotrenoTmp->getNumeroAssi()));
                 riga->push_back(autotrenoTmp->getEsonero() ? "SI" : "NO");
+                riga->push_back(QString::number(autotrenoTmp->calcolaBollo(), 'f', 2) + " €");
                 tot.push_back(*riga);
                 riga->clear();
                 i++;
@@ -113,18 +112,13 @@ QList<QStringList> Model::getListaVeicoli() {
 //    return ret;
 //}
 
-
-void Model::resetFiltro()
-{
-    //emit resetColoreFiltro();
-    datiFiltrati->clear();
-    for(auto it=datiTotali->begin();it!=datiTotali->end();++it){
-        datiFiltrati->addInOrder(*it);
-    }
+void Model::elimina(const int i) {
+    modificato=true;
+    datiTotali->rimuoviIndice(i);
 }
 
-QStringList Model::getListaVeicoliFiltrata(const QString v, QMap<unsigned int, unsigned int> &) const
-{
+
+QStringList Model::getListaVeicoliFiltrata(const QString v, QMap<unsigned int, unsigned int> &) const {
     QStringList ret;
     QString autoveicolo;
     QRegExp regex(v,Qt::CaseInsensitive, QRegExp::Wildcard);
@@ -144,86 +138,6 @@ QStringList Model::getListaVeicoliFiltrata(const QString v, QMap<unsigned int, u
     }
 
     return ret;
+
 }
-
-//QStringList Model::getListaClientiPDF() const
-//{
-//    QStringList ret;
-//       QString datiCliente;
-//       for(auto it=datiTotali->begin();it!=datiTotali->end() && !datiTotali->isEmpty();++it)
-//       {
-//           datiCliente =(QString::fromStdString(("N:" +(*(*it)).getTarga() + " ,C: " + (*(*it)).getMarca()+ " ,CF: " + (*(*it)).getModello())));
-//           ret.push_back(datiCliente);
-
-//}
-//    return ret;
-//}
-//void Model::fltrAutomobile()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<automobile*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrAutocarro()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<autocarro*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrAutotreno()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<autotreno*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrMaxAssi()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<MaxAssi*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrMinAssi()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<MinAssi*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-//void Model::fltrEsonero()
-//{
-//    datiFiltrati->clear();
-//    for(auto it= datiTotali->begin(); it!=datiTotali->end(); ++it){
-//        veicolo* veicolo = *it;
-//        if(dynamic_cast<Esonero*>(veicolo) != nullptr){
-//            datiFiltrati->addInOrder(*it);
-//        }
-//    }
-//}
-
-
-
 

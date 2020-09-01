@@ -35,44 +35,29 @@ public:
     void colorInizio() const;
     void mostraVeicoli(QList<QStringList>);
     const QString getParolaCercata() const;
-
+    void nessunSelezionato();
+    void veicoloRimossoShowBox();
 
 public slots:
     void openAddLayout() const;
     void openModLayout();
-    void colorAutomobile();
-    void colorAutotreno();
-    void colorAutocarro();
-    void colorMinAssi();
-    void colorMaxAssi();
-    void colorEsonero();
+    void richiestaRim();
 
 private:
 
     addVeicoli* vistaAdd;
     modVeicoli* vistaMod;
-
     QVBoxLayout* mainLayout, *verticalLayout;
     QHBoxLayout* horizontal, *Bottonisotto;
-    QPushButton* removeFilter, *checkAutomobile, *checkAutocarro, *checkAutotreno, *checkMinAssi, *checkMaxAssi, *checkEsonero;
     QPushButton* addButton,*modButton,*removeButton;
     QLineEdit* lineCerca;
-    QGroupBox* veicoliGroup1;
     QTableWidget* veicoliTable;
     QStringList header;
 
     void setMainWindowStyle();
 
 signals:
-  //  void signOpenAddWindow();
-    void filtroTutti();
-    void filtroAutomobile();
-    void filtroAutotreno();
-    void filtroAutocarro();
-    void filtroMinAssi();
-    void filtroMaxAssi();
-    void filtroEsonero();
- //   void signEsportaPDFClienti();
+    void sEliminav(const int);
 
 };
 

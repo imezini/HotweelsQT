@@ -16,27 +16,21 @@
 
 class Model : public QObject {
     Q_OBJECT
+
 public:
     Model();
     ~Model();
     QList<QStringList> getListaVeicoli();
+    void elimina(const int);
     void resetFiltro();
     QStringList getListaVeicoliFiltrata(const QString,QMap<unsigned int,unsigned int> &) const;
-//    QStringList getListaClientiPDF() const;
-//    void fltrAutomobile();
-//    void fltrAutocarro();
-//    void fltrAutotreno();
-//    void fltrMaxAssi();
-//    void fltrMinAssi();
-//    void fltrEsonero();
-
 
 public slots:
     void addInList(const QStringList);
 
 signals:
     void veicoloInLista();
-    void resetColoreFiltro() const;
+
 private:
 
     Container <pointer<autoveicolo>> *datiTotali;

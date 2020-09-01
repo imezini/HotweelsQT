@@ -26,29 +26,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     setLayout(mainLayout);
 
-    /*Filtri*/
-
-    QGroupBox* allFilter = new QGroupBox("Filtri");
-    QGridLayout* gridFilter = new QGridLayout();
-    removeFilter = new QPushButton("Rimuovi Filtri", this);
-    checkAutomobile = new QPushButton("Automobile", this);
-    checkAutocarro = new QPushButton("Autocarro", this);
-    checkAutotreno = new QPushButton("Autotreno", this);
-    checkMinAssi = new QPushButton("2 assi", this);
-    checkMaxAssi = new QPushButton("Maggiore di 2 assi", this);
-    checkEsonero = new QPushButton("Esonero", this);
-
-    gridFilter->addWidget(checkAutomobile, 0, 0);
-    gridFilter->addWidget(checkAutocarro, 0, 1);
-    gridFilter->addWidget(checkAutotreno, 0, 2);
-    gridFilter->addWidget(checkMinAssi, 1, 0);
-    gridFilter->addWidget(checkMaxAssi, 1, 1);
-    gridFilter->addWidget(removeFilter, 1, 2);
-    gridFilter->addWidget(checkEsonero, 2, 2);
-
-    allFilter->setLayout(gridFilter);
-    verticalLayout->addWidget(allFilter);
-
     /*tabella veicoli*/
 
     veicoliTable = new QTableWidget();
@@ -85,44 +62,8 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
     connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
-
-    connect(removeFilter,SIGNAL(clicked()),this,SIGNAL(filtroTutti()));
-    connect(checkAutomobile, SIGNAL(clicked()), this, SIGNAL(filtroAutomobile()));
-    connect(checkAutocarro, SIGNAL(clicked()), this, SIGNAL(filtroAutocarro()));
-    connect(checkAutotreno, SIGNAL(clicked()) , this ,SIGNAL(filtroAutotreno()));
-    connect(checkMaxAssi, SIGNAL(clicked()) , this , SIGNAL(filtroMaxAssi()));
-    connect(checkMinAssi, SIGNAL(clicked()), this , SIGNAL(filtroMinAssi()));
-    connect(checkEsonero, SIGNAL(clicked()), this , SIGNAL(filtroEsonero()));
-    connect(checkAutomobile, SIGNAL(clicked()), this, SLOT(colorAutomobile()));
-    connect(checkAutocarro, SIGNAL(clicked()), this, SLOT(colorAutocarro()));
-    connect(checkAutotreno, SIGNAL(clicked()) , this ,SLOT(colorAutotreno()));
-    connect(checkMaxAssi, SIGNAL(clicked()) , this ,SLOT (colorMaxAssi()));
-    connect(checkMinAssi, SIGNAL(clicked()), this , SLOT(colorMinAssi()));
-    connect(checkEsonero, SIGNAL(clicked()), this , SLOT(colorEsonero()));
-
-     // connect(checkAutotreno, SIGNAL(clicked()), this, SIGNAL(signEsportaPDFClienti()));
-
-    /*Bollo*/
-
-     QGroupBox *veicoliGroup1 = new QGroupBox("Bollo");
-     QFormLayout *formBolloLayout = new QFormLayout();
-     QLabel *totaleLabel = new QLabel(tr("Totale bollo veicoli selezionati: "));
-     formBolloLayout->addRow(totaleLabel);
-     veicoliGroup1->setLayout(formBolloLayout);
-     verticalLayout->addWidget(veicoliGroup1);
-
-     /*Parte grafica*/
-
-     checkAutomobile->setObjectName(QStringLiteral("checkAutomobile"));
-     checkAutocarro->setObjectName(QStringLiteral("checkAutocarro"));
-     checkAutotreno->setObjectName(QStringLiteral("checkAutotreno"));
-     checkEsonero->setObjectName(QStringLiteral("checkEsonero"));
-     checkMaxAssi->setObjectName(QStringLiteral("checkMaxAssi"));
-     checkMinAssi->setObjectName(QStringLiteral("checkMinAssi"));
-     removeFilter->setObjectName(QStringLiteral("removeFilter"));
+    connect(removeButton, SIGNAL(clicked()), this, SLOT(richiestaRim()));
 }
-
-
 
 MainWindow::~MainWindow()
 {
@@ -135,6 +76,10 @@ void MainWindow::openAddLayout() const {
 
 void MainWindow::openModLayout() {
     vistaMod->show();
+}
+
+void MainWindow::richiestaRim() {
+    emit sEliminav(veicoliTable->currentRow());
 }
 
 
@@ -150,11 +95,19 @@ void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
     }
 }
 
-const QString MainWindow::getParolaCercata() const
-{
+const QString MainWindow::getParolaCercata() const {
     return lineCerca->text();
 }
 
+void MainWindow::nessunSelezionato() {
+    QMessageBox rimuoviNonSelezionato;
+    rimuoviNonSelezionato.critical(this,"Nessun veicolo selezionato","Selezionare un veicolo");
+}
+
+void MainWindow::veicoloRimossoShowBox() {
+    QMessageBox veicoloRimossoBox;
+    veicoloRimossoBox.information(this,"Veicolo rimosso","Il veicolo è stato rimosso con successo");
+}
 
 // colori+css
 
@@ -163,69 +116,5 @@ void MainWindow::setMainWindowStyle(){
     file.open(QFile::ReadOnly);
     QString styleSheet = QLatin1String(file.readAll());
     setStyleSheet(styleSheet);
-}
-
-void MainWindow:: colorInizio() const{
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-
-void MainWindow::colorAutomobile(){
-    checkAutomobile->setStyleSheet("background-color:#3cb043;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-void MainWindow::colorAutotreno(){
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#3cb043;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-void MainWindow::colorAutocarro(){
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#3cb043;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-void MainWindow::colorMinAssi(){
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#3cb043;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-void MainWindow::colorMaxAssi(){
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#3cb043;");
-    checkEsonero->setStyleSheet("background-color:#ADD8E6;");
-}
-
-void MainWindow::colorEsonero(){
-    checkAutomobile->setStyleSheet("background-color:#ADD8E6;");
-    checkAutocarro->setStyleSheet("background-color:#ADD8E6;");
-    checkAutotreno->setStyleSheet("background-color:#ADD8E6;");
-    checkMinAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkMaxAssi->setStyleSheet("background-color:#ADD8E6;");
-    checkEsonero->setStyleSheet("background-color:#3cb043;");
 }
 

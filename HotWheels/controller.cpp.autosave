@@ -30,7 +30,6 @@ void Controller::updateVeicoliTable() {
 
 void Controller::elimina(const int indice) {
     m->elimina(indice);
-    view->veicoliTable->selectRow(indice);
     view->veicoliTable->removeRow(indice);
     view->veicoloRimossoShowBox();
 
