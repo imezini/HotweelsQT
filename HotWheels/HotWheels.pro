@@ -33,7 +33,8 @@ SOURCES += \
     addveicoli.cpp \
     controller.cpp \
     modveicoli.cpp \
-    model.cpp
+    model.cpp \
+    autocarroplus.cpp
 
 
 HEADERS += \
@@ -47,7 +48,8 @@ HEADERS += \
     modveicoli.h \
     model.h \
     container.h \
-    pointer.h
+    pointer.h \
+    autocarroplus.h
 
 FORMS += \
         mainwindow.ui

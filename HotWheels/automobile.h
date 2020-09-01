@@ -5,7 +5,7 @@
 
 class automobile: virtual public autoveicolo {
 
-private:
+protected:
     string classeAmbientale;
     int potenza;
 

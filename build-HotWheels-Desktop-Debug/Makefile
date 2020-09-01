@@ -59,7 +59,8 @@ SOURCES       = ../HotWheels/main.cpp \
 		../HotWheels/addveicoli.cpp \
 		../HotWheels/controller.cpp \
 		../HotWheels/modveicoli.cpp \
-		../HotWheels/model.cpp qrc_risorse.cpp \
+		../HotWheels/model.cpp \
+		../HotWheels/autocarroplus.cpp qrc_risorse.cpp \
 		moc_mainwindow.cpp \
 		moc_addveicoli.cpp \
 		moc_controller.cpp \
@@ -75,6 +76,7 @@ OBJECTS       = main.o \
 		controller.o \
 		modveicoli.o \
 		model.o \
+		autocarroplus.o \
 		qrc_risorse.o \
 		moc_mainwindow.o \
 		moc_addveicoli.o \
@@ -165,7 +167,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../HotWheels/modveicoli.h \
 		../HotWheels/model.h \
 		../HotWheels/container.h \
-		../HotWheels/pointer.h ../HotWheels/main.cpp \
+		../HotWheels/pointer.h \
+		../HotWheels/autocarroplus.h ../HotWheels/main.cpp \
 		../HotWheels/mainwindow.cpp \
 		../HotWheels/autoveicolo.cpp \
 		../HotWheels/automobile.cpp \
@@ -174,7 +177,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../HotWheels/addveicoli.cpp \
 		../HotWheels/controller.cpp \
 		../HotWheels/modveicoli.cpp \
-		../HotWheels/model.cpp
+		../HotWheels/model.cpp \
+		../HotWheels/autocarroplus.cpp
 QMAKE_TARGET  = HotWheels
 DESTDIR       = 
 TARGET        = HotWheels
@@ -361,8 +365,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/risorse.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/modveicoli.h ../HotWheels/model.h ../HotWheels/container.h ../HotWheels/pointer.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp ../HotWheels/modveicoli.cpp ../HotWheels/model.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/mainwindow.h ../HotWheels/autoveicolo.h ../HotWheels/automobile.h ../HotWheels/autocarro.h ../HotWheels/autotreno.h ../HotWheels/addveicoli.h ../HotWheels/controller.h ../HotWheels/modveicoli.h ../HotWheels/model.h ../HotWheels/container.h ../HotWheels/pointer.h ../HotWheels/autocarroplus.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../HotWheels/main.cpp ../HotWheels/mainwindow.cpp ../HotWheels/autoveicolo.cpp ../HotWheels/automobile.cpp ../HotWheels/autocarro.cpp ../HotWheels/autotreno.cpp ../HotWheels/addveicoli.cpp ../HotWheels/controller.cpp ../HotWheels/modveicoli.cpp ../HotWheels/model.cpp ../HotWheels/autocarroplus.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../HotWheels/mainwindow.ui $(DISTDIR)/
 
 
@@ -532,6 +536,12 @@ model.o: ../HotWheels/model.cpp ../HotWheels/model.h \
 		../HotWheels/autocarro.h \
 		../HotWheels/autotreno.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../HotWheels/model.cpp
+
+autocarroplus.o: ../HotWheels/autocarroplus.cpp ../HotWheels/autocarroplus.h \
+		../HotWheels/autocarro.h \
+		../HotWheels/autoveicolo.h \
+		../HotWheels/automobile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o autocarroplus.o ../HotWheels/autocarroplus.cpp
 
 qrc_risorse.o: qrc_risorse.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_risorse.o qrc_risorse.cpp

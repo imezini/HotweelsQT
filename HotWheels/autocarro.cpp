@@ -11,7 +11,7 @@ double autocarro::calcolaBollo() const {
     if(getEsonero())
         bollo = (0.0);
     else{
-        if(1 < portata && portata < 4)
+        if(1 <= portata && portata < 4)
             bollo = 25.10;
         else if(4 <= portata && portata < 8){
                  bollo = 35.10;

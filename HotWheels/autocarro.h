@@ -5,7 +5,7 @@
 
 class autocarro: virtual public autoveicolo {
 
-private:
+protected:
     int portata;
 
 public:

@@ -13,6 +13,7 @@
 #include "automobile.h"
 #include "autocarro.h"
 #include "autotreno.h"
+#include "autocarroplus.h"
 
 class Model : public QObject {
     Q_OBJECT

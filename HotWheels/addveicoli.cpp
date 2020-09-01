@@ -17,9 +17,11 @@ addVeicoli::addVeicoli(QWidget *parent) : QDialog(parent) {
     tipoVeicoloBox->addItem("Automobile");
     tipoVeicoloBox->addItem("Autocarro < 12 tonnellate");
     tipoVeicoloBox->addItem("Autocarro >= 12 tonnellate");
+    tipoVeicoloBox->addItem("Autocarro tipo C");
 
     targa = new QLabel("Targa: ");
     targaEdit = new QLineEdit();
+    targaEdit->setValidator(new QRegExpValidator(QRegExp("[A-Z0-9]{0,7}")));
     targaEdit->setPlaceholderText("es. AA123ZZ");
 
     marca = new QLabel("Marca: ");
@@ -49,20 +51,22 @@ addVeicoli::addVeicoli(QWidget *parent) : QDialog(parent) {
     classeAmbBox->addItem("Euro 6");
 
     potenza = new QLabel("Potenza (Kw): ");
-    potenzaEdit = new QLineEdit();
-    potenzaEdit->setPlaceholderText("es. 80");
+    potenzaEdit = new QSpinBox();
+    potenzaEdit->setMaximum(500);
 
     //Label autocarro
 
     portata = new QLabel("Portata (t): ");
-    portataEdit = new QLineEdit();
-    portataEdit->setPlaceholderText("es. 15");
+    portataEdit = new QSpinBox();
+    portataEdit->setMinimum(1);
+    portataEdit->setMaximum(99);
 
     //Label autotreno
 
     numeroAs = new QLabel("Numero Assi: ");
-    numeroAsEdit = new QLineEdit();
-    numeroAsEdit->setPlaceholderText("es. 3");
+    numeroAsEdit = new QSpinBox();
+    numeroAsEdit->setMinimum(2);
+    numeroAsEdit->setMaximum(8);
 
     esoneroCheckbox = new QCheckBox("Esonero bollo", this);
 
@@ -115,9 +119,9 @@ void addVeicoli::azzeraRighe() {
     modelloEdit->setText("");
     classeAmbBox->setCurrentIndex(0);
     annoImmEdit->setDate(QDate::currentDate());
-    potenzaEdit->setText("");
-    portataEdit->setText("");
-    numeroAsEdit->setText("");
+    potenzaEdit->setValue(0);
+    portataEdit->setValue(1);
+    numeroAsEdit->setValue(2);
     esoneroCheckbox->setChecked(false);
 }
 //ok
@@ -141,11 +145,11 @@ void addVeicoli:: conferma(){
 
         if(tipoVeicoloBox->currentIndex()==0)
             emit mostraErroreInput("mancaVeicolo");
-        else if((tipoVeicoloBox->currentIndex()==1) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()=="" || classeAmbBox->currentIndex() == 0 || potenzaEdit->text()==""))
+        else if((tipoVeicoloBox->currentIndex()==1) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()=="" || classeAmbBox->currentIndex() == 0 || potenzaEdit->value() == 0))
                 emit mostraErroreInput("mancaLineEdit");
-        else if((tipoVeicoloBox->currentIndex()==2) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()=="" || portataEdit->text()==""))
+        else if((tipoVeicoloBox->currentIndex()==2) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()==""))
                 emit mostraErroreInput("mancaLineEdit");
-        else if((tipoVeicoloBox->currentIndex()==3) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()=="" || portataEdit->text()=="" || numeroAsEdit->text()==""))
+        else if((tipoVeicoloBox->currentIndex()==3) && (targaEdit->text()=="" || marcaEdit->text()=="" || modelloEdit->text()=="" || annoImmEdit->text()==""))
                 emit mostraErroreInput("mancaLineEdit");
         else {
 
@@ -217,6 +221,16 @@ void addVeicoli::sblocca(int n) const {
         portataEdit->setEnabled(true);
         numeroAs->setEnabled(true);
         numeroAsEdit->setEnabled(true);
+        break;
+    case 4: //autocarro tipo C
+        classeAmbientale->setEnabled(true);
+        classeAmbBox->setEnabled(true);
+        potenza->setEnabled(true);
+        potenzaEdit->setEnabled(true);
+        portata->setEnabled(true);
+        portataEdit->setEnabled(true);
+        numeroAs->setEnabled(false);
+        numeroAsEdit->setEnabled(false);
         break;
     }
 }

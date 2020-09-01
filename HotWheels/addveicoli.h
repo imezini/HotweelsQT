@@ -17,6 +17,7 @@
 #include <QStringList>
 #include <QComboBox>
 #include <QGroupBox>
+#include <QSpinBox>
 using std::string;
 
 
@@ -44,7 +45,8 @@ protected:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *mainLayout,*bottoni;
     QComboBox *classeAmbBox, *tipoVeicoloBox;
-    QLineEdit *targaEdit, *marcaEdit, *modelloEdit, *potenzaEdit, *portataEdit, *numeroAsEdit;
+    QLineEdit *targaEdit, *marcaEdit, *modelloEdit;
+    QSpinBox *potenzaEdit, *portataEdit, *numeroAsEdit;
     QDateEdit *annoImmEdit;
     QPushButton *salvaButton,*annullaButton;
     QCheckBox *esoneroCheckbox;
