@@ -31,6 +31,7 @@ public slots:
 
 signals:
     void veicoloInLista();
+    void targaPresenteError();
 
 private:
 

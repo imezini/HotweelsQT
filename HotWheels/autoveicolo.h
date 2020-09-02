@@ -13,7 +13,6 @@ private:
     QDate annoImmatricolazione;
     bool esonero;
 
-    //double bollo;
 
 public:
     autoveicolo(string= "", string ="", string = "", string = "", int = 1900, int = 1, int = 1, bool = false);

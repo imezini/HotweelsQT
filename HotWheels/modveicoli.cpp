@@ -5,24 +5,21 @@ modVeicoli::modVeicoli(QWidget *parent):addVeicoli(parent){
     setWindowTitle("Modifica il veicolo selezionato");
 }
 
-//void modVeicoli::aggiungiDati(const QStringList& c, const unsigned int i){
+void modVeicoli::aggiungiDati(const QStringList& c, const unsigned int i){
+    ini = i;
+    tipoVeicoloBox->setCurrentText(c.at(0));
+    targaEdit->setText(c.at(1));
+    marcaEdit->setText(c.at(2));
+    modelloEdit->setText(c.at(3));
+    annoImmEdit->setDate(QDate::fromString(c.at(4)));
+    classeAmbBox->setCurrentText(c.at(5));
+    potenzaEdit->setValue((c.at(6)).split(" ")[0].toInt());
+    portataEdit->setValue((c.at(7)).split(" ")[0].toInt());
+    numeroAsEdit->setValue((c.at(8)).split(" ")[0].toInt());
+    esoneroCheckbox->setChecked(c.at(9)=="true"? true : false);
 
-//    ini = i;
+}
 
-//    targaEdit->setText(c.at(0));
-//    marcaEdit->setText(c.at(1));
-//    modelloEdit->setText(c.at(2));
-//    //classeAmbBox->setText(c.at(3));
-//    annoImmEdit->setDate(QDate::fromString(c.at(4)));
-//    potenzaEdit->value(c.at(5));
-//    portataEdit->setText(c.at(6));
-//    numeroAsEdit->setText(c.at(7));/*
-//    automobileCheckbox->setChecked(c.at(8)=="true"? true : false);
-//    autotrenoCheckbox->setChecked(c.at(9)=="true"? true : false);
-//    autocarroCheckbox->setChecked(c.at(10)=="true"? true : false);*/
-//    esoneroCheckbox->setChecked(c.at(11)=="true"? true : false);
-
-//}
 void modVeicoli:: veicoloModificato(){
     QMessageBox veicoloModificatoBox;
     veicoloModificatoBox.information(this, "Veicolo modificato", "Veicolo modificato con successo");

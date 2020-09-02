@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
     QGroupBox *veicoliGroup = new QGroupBox("Lista Veicoli");
     QVBoxLayout *layoutListaVeicoli= new QVBoxLayout();
     lineCerca = new QLineEdit(this);
-    lineCerca->setPlaceholderText("Cerca Veicolo");
+    lineCerca->setPlaceholderText("Filtra Tabella");
     layoutListaVeicoli->addWidget(lineCerca);
     layoutListaVeicoli->addWidget(veicoliTable);
     veicoliGroup->setLayout(layoutListaVeicoli);
@@ -61,8 +61,10 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent), vistaAdd(new addVeico
 
 
     connect(addButton, SIGNAL(clicked()), this, SLOT(openAddLayout()));
-    connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
+    //connect(modButton, SIGNAL(clicked()), this, SLOT(openModLayout()));
     connect(removeButton, SIGNAL(clicked()), this, SLOT(richiestaRim()));
+    connect(lineCerca, SIGNAL(textChanged(QString)), this, SLOT(cercaParola(QString)));
+
 }
 
 MainWindow::~MainWindow()
@@ -74,17 +76,31 @@ void MainWindow::openAddLayout() const {
     vistaAdd->show();
 }
 
-void MainWindow::openModLayout() {
-    vistaMod->show();
-}
 
 void MainWindow::richiestaRim() {
-    emit sEliminav(veicoliTable->currentRow());
+        emit sEliminav(veicoliTable->currentRow());
 }
 
+void MainWindow::cercaParola(QString parolaCercata) {
+    for( int i = 0; i < veicoliTable->rowCount(); ++i ) {
+        bool match = false;
+        for( int j = 0; j < veicoliTable->columnCount(); ++j ){
+            QTableWidgetItem *item = veicoliTable->item(i, j );
+            if(item->text().contains(parolaCercata)){
+                match = true;
+                break;
+            }
+        }
+        veicoliTable->setRowHidden(i, !match);
+    }
+}
+
+void MainWindow::veicoloAggiunto(){
+    QMessageBox veicoloAggiuntoBox;
+    veicoloAggiuntoBox.information(this,"Veicolo aggiunto","Il veicolo è stato aggiunto con successo!");
+}
 
 void MainWindow::mostraVeicoli(QList<QStringList> targaVeicoli){
-
     int r = 1;
     for(auto it = targaVeicoli.begin(); it != targaVeicoli.end(); it++){
         veicoliTable->setRowCount(r);
@@ -108,6 +124,10 @@ void MainWindow::veicoloRimossoShowBox() {
     QMessageBox veicoloRimossoBox;
     veicoloRimossoBox.information(this,"Veicolo rimosso","Il veicolo è stato rimosso con successo");
 }
+void MainWindow::targaPresenteBox() {
+    QMessageBox targaPresenteBox;
+    targaPresenteBox.critical(this, "Targa già presente nella lista", "Non è possibile aggiungere due veicoli con targa uguale");
+}
 
 // colori+css
 
@@ -117,4 +137,5 @@ void MainWindow::setMainWindowStyle(){
     QString styleSheet = QLatin1String(file.readAll());
     setStyleSheet(styleSheet);
 }
+
 

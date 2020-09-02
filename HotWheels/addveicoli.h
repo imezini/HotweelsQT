@@ -27,7 +27,6 @@ class addVeicoli : public QDialog {
 public:
     addVeicoli(QWidget *parent = nullptr);
     void mostraErroreInput(string);
-    void veicoloAggiunto();
 
 public slots:
     void azzeraRighe();

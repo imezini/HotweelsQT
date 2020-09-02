@@ -1,6 +1,6 @@
 #include "autocarroplus.h"
 
-autocarroplus::autocarroplus(string t, string ta, string ma,string mo, int a, int m, int g, bool e, string ca, int po, int p) : automobile(t,ta,ma,mo,a,m,g,e,ca,po), autocarro(t,ta,ma,mo,a,m,g,e,p){}
+autocarroplus::autocarroplus(string t, string ta, string ma,string mo, int a, int m, int g, bool e, string ca, int po, int p) : autoveicolo(t,ta,ma,mo,a,m,g,e), automobile(t,ta,ma,mo,a,m,g,e,ca,po), autocarro(t,ta,ma,mo,a,m,g,e,p){}
 
 
 autocarroplus *autocarroplus::clone() const {

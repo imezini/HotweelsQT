@@ -25,8 +25,14 @@ void Model::addInList(const QStringList v) {
     else
         autoveicolo= new autocarroplus(v.at(0).toStdString(), v.at(1).toStdString(), v.at(2).toStdString(), v.at(3).toStdString(), annoImm.year(), annoImm.month(), annoImm.day(),v.at(9) == "true" ? true : false , v.at(5).toStdString(), stoi(v.at(6).toStdString()), stoi(v.at(7).toStdString()));
 
-    datiTotali->addInOrder(autoveicolo);
-    emit veicoloInLista();
+    bool targaPresente = datiTotali->checkTarga(autoveicolo);
+
+    if(!targaPresente){
+        datiTotali->addInOrder(autoveicolo);
+        emit veicoloInLista();
+    }
+    else
+        emit targaPresenteError();
 }
 
 QList<QStringList> Model::getListaVeicoli() {

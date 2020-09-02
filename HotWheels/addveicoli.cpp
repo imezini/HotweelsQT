@@ -134,10 +134,7 @@ void addVeicoli::mostraErroreInput(string motivo){
 
 }
 
-void addVeicoli::veicoloAggiunto(){
-    QMessageBox veicoloAggiuntoBox;
-    veicoloAggiuntoBox.information(this,"Veicolo aggiunto","Il veicolo è stato aggiunto con successo!");
-}
+
 
 //ok
 
@@ -165,12 +162,10 @@ void addVeicoli:: conferma(){
             tmp->push_back(numeroAsEdit->text());
             tmp->push_back(esoneroCheckbox->isChecked()? "true":"false");
 
-            emit inviaStringaVeicoli(*tmp);
             this->close();
             this->azzeraRighe();
             sblocca(0);
-
-            veicoloAggiunto();
+            emit inviaStringaVeicoli(*tmp);
         }
 }
 

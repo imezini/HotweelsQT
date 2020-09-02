@@ -37,11 +37,14 @@ public:
     const QString getParolaCercata() const;
     void nessunSelezionato();
     void veicoloRimossoShowBox();
+    void targaPresenteBox();
 
 public slots:
+    void veicoloAggiunto();
     void openAddLayout() const;
-    void openModLayout();
+    //void openModLayout();
     void richiestaRim();
+    void cercaParola(QString);
 
 private:
 

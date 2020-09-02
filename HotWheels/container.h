@@ -29,7 +29,7 @@ public:
     ~Container();
     Container& operator=(const Container&);
 
-
+    bool checkTarga(const T&);
     void addInOrder(const T&);
     void rimpiazzaFinale(unsigned int, const T&);
     void rimuoviIndice(const unsigned int);
@@ -129,6 +129,23 @@ Container<T>& Container<T>::operator=(const Container & q)
         first = clone(q.first, last);
     }
     return *this;
+}
+
+template<class T>
+bool Container<T>::checkTarga(const T& veicolo){
+    nodo* autoveicolo = new nodo(veicolo);
+    nodo* tmp = first;
+    bool trovata = false;
+    if(tmp == nullptr)
+        return trovata;
+    else{
+        while(!trovata && tmp != nullptr){
+            if(tmp->info == autoveicolo->info)
+                trovata = true;
+            tmp = tmp->next;
+        }
+    }
+    return trovata;
 }
 
 template<class T>
